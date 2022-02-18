@@ -20,7 +20,12 @@
     "noEmit": true,
     "jsx": "react-jsx"
   },
-  "include": [
-    "src"
+  "include": [ "src" ],
+  "exclude": [
+    "node_modules",
+    "**/*.spec.ts"
+  ],
+  "files": [
+    "./custom.d.ts"
   ]
 }
