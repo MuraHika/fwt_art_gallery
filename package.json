@@ -23,6 +23,7 @@
         "eject": "react-scripts eject",
         "linter": "eslint --fix ./src",
         "prepare": "husky install",
+        "predeploy": "npm run build",
         "deploy": "gh-pages -d build"
     },
     "eslintConfig": {
