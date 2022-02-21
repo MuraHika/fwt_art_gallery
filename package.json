@@ -1,5 +1,6 @@
 {
     "name": "fwt_art_gallery",
+    "homepage": "http://MuraHika.github.io/fwt_art_gallery",
     "version": "0.1.0",
     "private": true,
     "dependencies": {
