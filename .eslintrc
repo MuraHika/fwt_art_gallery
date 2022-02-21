@@ -35,7 +35,9 @@
       "@typescript-eslint/explicit-module-boundary-types": "off",
       "import/extensions": "off",
       "@typescript-eslint/no-non-null-assertion": "off",
-      "@typescript-eslint/quotes": "off"
+      "@typescript-eslint/quotes": "off",
+      "@typescript-eslint/no-var-requires": "off",
+      "import/no-extraneous-dependencies": "off"
     },
     "settings": {
       "import/resolver": {
