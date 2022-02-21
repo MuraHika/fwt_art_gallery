@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/fwt_art_gallery/static/css/main.e6c13ad2.css",
+    "main.js": "/fwt_art_gallery/static/js/main.5017bdb8.js",
+    "index.html": "/fwt_art_gallery/index.html",
+    "main.e6c13ad2.css.map": "/fwt_art_gallery/static/css/main.e6c13ad2.css.map",
+    "main.5017bdb8.js.map": "/fwt_art_gallery/static/js/main.5017bdb8.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e6c13ad2.css",
+    "static/js/main.5017bdb8.js"
+  ]
+}
