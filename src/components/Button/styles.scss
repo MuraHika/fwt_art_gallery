@@ -1,0 +1,110 @@
+@import "../../styles.scss";
+.container-card {
+    border-radius: 20px;
+    height: 275px;
+    width: 360px;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+    margin: 0.3em;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.container-card__footer {
+    background: rgba(255, 255, 255, 0.75);
+    width: 100%;
+    height: 60%;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    font-family: Roboto;
+    padding-left: 0.6rem;
+    transition: transform 0.35s;
+    transform: translate3d(0, 8rem, 0);
+}
+
+.container-card__footer p {
+    font-size: 13px;
+    font-weight: 300;
+    margin: 0;
+    margin-left: 0.4rem;
+    opacity: 0;
+    transition: opacity 0.35s;
+}
+
+.container-card__footer h2 {
+    font-size: 13px;
+    font-weight: 500;
+    margin: 0;
+    opacity: 0;
+    transition: opacity 0.35s;
+}
+
+.container-card__footer:hover h2,
+.container-card__footer:hover p {
+    opacity: 1;
+}
+
+.container-card__footer h1 {
+    font-size: 18px;
+    font-weight: 700;
+    margin: 0;
+    margin-top: 0.5rem;
+}
+
+.container-card__footer:hover {
+    transition: transform 0.35s;
+    transform: translate3d(0, 0rem, 0);
+}
+
+.container-card__footer__row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 0.6rem;
+}
+
+@media screen and (max-width: 500px) {
+    .container-card {
+        //width: 280px;
+        width: 100%;
+        height: 205px;
+    }
+    .container-card__footer {
+        height: 80%
+    }
+}
+
+@media screen and (min-width: 501px) and (max-width: 768px) {
+    .container-card {
+        //width: 340px;
+        width: 48%;
+        ;
+        height: 249px;
+    }
+    .container-card__footer {
+        height: 70%
+    }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+    .container-card {
+        //width: 300px;
+        width: 31%;
+        height: 230px;
+    }
+    .container-card__footer {
+        height: 70%
+    }
+}
+
+@media screen and (min-width: 1025px) {
+    .container-card {
+        //width: 360px;
+        //width: 27%;
+        width: 32%;
+        height: 275px;
+    }
+}

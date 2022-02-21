@@ -26,7 +26,6 @@
     "**/*.spec.ts"
   ],
   "files": [
-    "./custom.d.ts",
-    "webpack.config.js"
+    "./custom.d.ts"
   ]
 }
