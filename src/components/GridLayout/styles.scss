@@ -1,0 +1,26 @@
+@import "../../styles.scss";
+
+.grid {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+div > .container-card {
+  // max-width: 100px;
+  max-width: 30%;
+  height: 260px;
+
+  @include _768 {
+    height: 190px;
+  }
+
+  @include _320 {
+    height: 120px;
+    max-width: 45%;
+  }
+}

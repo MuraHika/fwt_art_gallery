@@ -1,35 +1,30 @@
 import React from 'react';
 import "./styles.scss";
 
+interface ButtonProps {
+  text: string;
+  size?: "large" | "medium" | "small";
+  isPrimary?: boolean;
+  theme?: "dark" | "light";
+}
+
 export default function Button(
-//     { 
-//   id,
-//   src_img,
-//   author_name, 
-//   years_live,
-//   picture_name,
-//   date_created,
-//   onArchiveTask, 
-//   onPinTask }
+  {
+    text,
+    size,
+    isPrimary,
+    theme,
+  } : ButtonProps,
 ) {
   return (
-    <div className="container-card" 
-    // style={{ backgroundImage: `url(${src_img})` }}
-    >
-            <div className="container-card__footer">
-              {/* <h1>{author_name}</h1> */}
-              <div className="container-card__footer__row">
-                {/* <p>{years_live}</p> */}
-              </div>
-              <div className="container-card__footer__row">
-                <h2>Name: </h2>
-                {/* <p>{picture_name}</p> */}
-              </div>
-              <div className="container-card__footer__row">
-                <h2>Created: </h2>
-                {/* <p>{date_created}</p> */}
-              </div>
-            </div>
-          </div>
+    <button className={`button button--${size} ${isPrimary ? `button--primary_${theme}` : `button--secondary_${theme}`}`} type='button'>
+        {text}
+    </button>
   );
 }
+
+Button.defaultProps = {
+  size: "medium",
+  isPrimary: true,
+  theme: "light",
+};

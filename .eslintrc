@@ -30,14 +30,16 @@
       "react-hooks/exhaustive-deps": "off",
       "import/prefer-default-export": "off",
       "no-param-reassign": "off",
-      "no-use-before-define": "off",
       "@typescript-eslint/no-use-before-define": ["error"],
       "@typescript-eslint/explicit-module-boundary-types": "off",
       "import/extensions": "off",
       "@typescript-eslint/no-non-null-assertion": "off",
       "@typescript-eslint/quotes": "off",
       "@typescript-eslint/no-var-requires": "off",
-      "import/no-extraneous-dependencies": "off"
+      "import/no-extraneous-dependencies": "off",
+      "react/require-default-props": "off",
+      "react/function-component-definition": "off",
+      "react/jsx-props-no-spreading": "off"
     },
     "settings": {
       "import/resolver": {
