@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import "./styles.scss";
 import NoImage from "../../assets/no_image.png";
 
@@ -19,27 +19,40 @@ export default function Card({
   date_created,
   onClick } : CardProps,
 ) {
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+  const [isTabletScreen, setisTabletScreen] = useState(false);
+  useEffect(() => {
+    console.log(screenWidth);
+    // setisTabletScreen(!!(window.innerWidth >= 320 && window.innerWidth < 768));
+    setScreenWidth(window.innerWidth);
+  }, [window.innerWidth]);
+
   const urlImage = src_img === undefined ? NoImage : src_img;
+  const onTapFooter = () => {
+    if (screenWidth < 768 && screenWidth >= 320) {
+      setisTabletScreen(!isTabletScreen);
+    }
+  };
   return (
     <div className="container-card" 
     style={{ backgroundImage: `url(${urlImage})` }}
     onClick={onClick}
     >
-            <div className="container-card__footer">
-              <h1>{author_name}</h1>
-              <div className="container-card__footer__row">
-                <p className='row__years'>{years_live}</p>
-              </div>
-              <div className="container-card__footer__row">
-                <h2>Name: </h2>
-                <p>{picture_name}</p>
-              </div>
-              { date_created && <div className="container-card__footer__row">
-                <h2>Created: </h2>
-                <p>{date_created}</p>
-              </div>
-              }
-            </div>
-          </div>
+      <div className={`container-card__footer ${isTabletScreen ? "container-card__footer--hover" : ""}`} onClick={onTapFooter}>
+        <h1>{author_name}</h1>
+        <div className="container-card__footer__row">
+          <h2 className='row__years'>{years_live}</h2>
+        </div>
+        <div className="container-card__footer__row">
+          <h2>Name: </h2>
+          <p>{picture_name}</p>
+        </div>
+        { date_created && <div className="container-card__footer__row">
+          <h2>Created: </h2>
+          <p>{date_created}</p>
+        </div>
+        }
+      </div>
+    </div>
   );
 }

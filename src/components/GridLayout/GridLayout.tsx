@@ -12,13 +12,13 @@ export default function GridLayout(
   } : GridLayoutProps,
 ) {
   const onClickPicture = () => {
-    console.log("cliick picture");
+    console.log("done");
   };
 
   return (
     <div className='grid'>
       {items.map((el) => (
-        <Card author_name={el.author} picture_name={el.painting} onClick={onClickPicture} />
+        <Card key={el.id} author_name={el.author} picture_name={el.painting} onClick={onClickPicture} />
       ),
       )}
     </div>

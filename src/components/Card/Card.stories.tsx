@@ -26,3 +26,12 @@ FullFilledFields.args = {
   date_created: "1931",
   onClick: () => console.log("done"),
 };
+
+export const OneField = Template.bind({});
+OneField.args = {
+  src_img: IMG,
+  author_name: "Salvador Dalí", 
+  years_live: "(1904-1989)",
+  picture_name: "The Persistence of Memory",
+  onClick: () => console.log("done"),
+};
