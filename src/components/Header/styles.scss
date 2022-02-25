@@ -1,0 +1,25 @@
+@import "../../styles.scss";
+
+.sticky {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+}
+
+.header {
+  display: flex;
+  // width: 100%;
+  flex-direction: row;
+  background-color: $main-color__black;
+  padding: 20px;
+  justify-content: space-between;
+}
+
+.header-buttons {
+  display: flex;
+  align-items: center;
+}
+
+.header-buttons > button {
+  margin-left: 12px;
+}

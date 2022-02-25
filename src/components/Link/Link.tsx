@@ -12,7 +12,7 @@ const Link : React.FunctionComponent<LinkProps> = ({
   url,
   theme,
   ...props } : LinkProps) => (
-    <a {...props} href={url} className={`link link--${theme}`} type='button'>
+    <a {...props} href={url}  className={`link link--${theme}`} type='button'>
         {text}
     </a>
 );

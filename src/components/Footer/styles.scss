@@ -1,0 +1,39 @@
+@import "../../styles.scss";
+
+.footer {
+  padding: 20px;
+  border-top: 2px solid rgba(255, 255, 255, 0.3);
+  background-color: $main-color__black;
+  // width: 100%;
+}
+
+.footer-row {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.left_column {
+  display: flex;
+  flex-direction: column;
+}
+
+.left_column span {
+  font-size: $size_font__18;
+  font-weight: $weight_font__bold;
+}
+
+.theme-dark {
+  color: $main-color__white;
+}
+
+.theme-light {
+  color: $main-color__black;
+}
+
+
+.right_column > svg  {
+  width: 100%;
+height: 100%; 
+}

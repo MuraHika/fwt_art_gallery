@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import "./styles.scss";
+import ResizeScreen from "../../utils/ScreenSize";
 import NoImage from "../../assets/no_image.png";
 
 interface CardProps {
@@ -19,17 +20,12 @@ export default function Card({
   date_created,
   onClick } : CardProps,
 ) {
-  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
   const [isTabletScreen, setisTabletScreen] = useState(false);
-  useEffect(() => {
-    console.log(screenWidth);
-    // setisTabletScreen(!!(window.innerWidth >= 320 && window.innerWidth < 768));
-    setScreenWidth(window.innerWidth);
-  }, [window.innerWidth]);
+  const screen = ResizeScreen();
 
   const urlImage = src_img === undefined ? NoImage : src_img;
   const onTapFooter = () => {
-    if (screenWidth < 768 && screenWidth >= 320) {
+    if (screen.isTabltet) {
       setisTabletScreen(!isTabletScreen);
     }
   };

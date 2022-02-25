@@ -2,10 +2,11 @@ import React from 'react';
 import "./styles.scss";
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  text: string;
+  text: any;
   size?: "large" | "medium" | "small";
   isPrimary?: boolean;
   theme?: "dark" | "light";
+  paddings: string;
 }
 
 const Button : React.FunctionComponent<ButtonProps> = ({
@@ -13,8 +14,12 @@ const Button : React.FunctionComponent<ButtonProps> = ({
   size,
   isPrimary,
   theme,
+  paddings,
   ...props } : ButtonProps) => (
-    <button {...props} className={`button button--${size} ${isPrimary ? `button--primary_${theme}` : `button--secondary_${theme}`}`} type='button'>
+    <button {...props} 
+    className={`button button--${size} ${isPrimary ? `button--primary_${theme}` : `button--secondary_${theme}`}`} 
+    type='button' 
+    style={{ padding: paddings }}>
         {text}
     </button>
 );

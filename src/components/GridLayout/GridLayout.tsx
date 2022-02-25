@@ -1,5 +1,6 @@
 import React from 'react';
 import "./styles.scss";
+import ResizeScreen from "../../utils/ScreenSize";
 import Card from "../Card/index";
 
 interface GridLayoutProps {
@@ -11,8 +12,11 @@ export default function GridLayout(
     items,
   } : GridLayoutProps,
 ) {
+  const screen = ResizeScreen();
   const onClickPicture = () => {
-    console.log("done");
+    console.log("istablet", screen.isTabltet);
+
+    console.log("screen", window.innerWidth);
   };
 
   return (

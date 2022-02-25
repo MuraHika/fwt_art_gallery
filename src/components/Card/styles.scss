@@ -7,7 +7,10 @@
     display: flex;
     // align-items: flex-end;
     overflow: hidden;
-    margin: 0.3em;
+    margin: 10px;
+    @include _320 {
+        margin: 7.5px;
+    }
     background-repeat: no-repeat;
     background-size: cover;
 }
