@@ -1,25 +1,23 @@
 import React from 'react';
 import "./styles.scss";
 
-interface LinkProps {
+interface LinkProps extends React.LiHTMLAttributes<HTMLAnchorElement> {
   url: string;
   text: string;
   theme?: "dark" | "light";
 }
 
-export default function Link(
-  {
-    text,
-    url,
-    theme,
-  } : LinkProps,
-) {
-  return (
-    <a href={url} className={`link link--${theme}`} type='button'>
+const Link : React.FunctionComponent<LinkProps> = ({
+  text,
+  url,
+  theme,
+  ...props } : LinkProps) => (
+    <a {...props} href={url} className={`link link--${theme}`} type='button'>
         {text}
     </a>
-  );
-}
+);
+
+export default Link;
 
 Link.defaultProps = {
   theme: "light",
