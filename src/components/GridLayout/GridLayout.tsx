@@ -5,11 +5,13 @@ import Card from "../Card/index";
 
 interface GridLayoutProps {
   items: any[],
+  theme: string,
 }
 
 export default function GridLayout(
   {
     items,
+    theme,
   } : GridLayoutProps,
 ) {
   const screen = ResizeScreen();
@@ -20,7 +22,7 @@ export default function GridLayout(
   };
 
   return (
-    <div className='grid'>
+    <div className={`grid grid--${theme}`}>
       {items.map((el) => (
         <Card key={el.id} author_name={el.author} picture_name={el.painting} onClick={onClickPicture} />
       ),

@@ -1,6 +1,10 @@
 @import "../../styles.scss";
 .link {
   font-family: $family_font;
+  @include _320 {
+    font-size: $size_font__14;
+    font-weight: $weight_font__bold;
+  }
 }
 
 .link--light {

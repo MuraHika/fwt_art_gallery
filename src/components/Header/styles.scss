@@ -10,16 +10,61 @@
   display: flex;
   // width: 100%;
   flex-direction: row;
-  background-color: $main-color__black;
   padding: 20px;
+  @include _320 {
+    position: fixed;
+    z-index: 10;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+  }
+  align-items: center;
   justify-content: space-between;
 }
 
 .header-buttons {
   display: flex;
+  // align-items: center;
+  justify-content: center;
+}
+
+.header-buttons--mobile {
+  display: flex;
+  flex-direction: column;
+  width: 85%;
   align-items: center;
+  position: absolute;
+  margin-top: 53px;
+  height: 100%;
+}
+
+.header-buttons--mobile > svg {
+  display: flex;
+  align-self: flex-end;
+  margin-bottom: 38px;
+}
+
+.header--light {
+  background-color: $main-color__white;
+  svg > path {
+    stroke: $main-color__black;
+  }
+}
+
+.header--dark {
+  background-color: $main-color__black;
+  svg > path {
+    stroke: $main-color__white;
+  }
 }
 
 .header-buttons > button {
   margin-left: 12px;
+}
+
+.header-buttons--mobile > button {
+  // position: absolute;
+  width: 100%;
+  margin-top: 15px;
 }
