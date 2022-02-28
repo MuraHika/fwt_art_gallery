@@ -14,7 +14,7 @@ interface HeaderProps {
 function Header({ theme } : HeaderProps) {
   const screen = ResizeScreen();
   const [classesBurger, setClassesBurger] = useState<string>();
-  const [isBurger, setIsBurger] = useState<boolean>(false);
+  const [isBurger, setIsBurger] = useState<boolean>(true);
   useEffect(() => {
     if (screen.isMobile) {
       setClassesBurger("header-buttons--mobile");
@@ -26,13 +26,13 @@ function Header({ theme } : HeaderProps) {
     <div style={{ width: "100%" }} className="sticky">
       <div className={`header header--${theme}`} >
           {!isBurger && <Logo />}
-            <div className={classesBurger}>
-              {screen.isMobile && !isBurger && <BurgerMenu />}
-              {isBurger && <Close />}
-              <Button className='header-button' text={<Theme />} isPrimary={false} theme={theme} size="medium" paddings="12px"/>
-              <Button text='LOG IN' isPrimary={false} theme={theme} size="large" paddings="12px 16px"/>
-              <Button text='SIGN UP' isPrimary={true} theme={theme} size="large" paddings="12px 16px"/>
-            </div>
+          {screen.isMobile && !isBurger && <div onClick={() => setIsBurger(true)}  className="burgermenu"><BurgerMenu /></div>}
+          <div className={classesBurger}>
+            {isBurger && <div onClick={() => setIsBurger(false)} className="burgermenu"><Close /></div>}
+            <Button className='header-button' text={<Theme />} isPrimary={false} theme={theme} size="medium" paddings="12px"/>
+            <Button text='LOG IN' isPrimary={false} theme={theme} size="large" paddings="12px 16px"/>
+            <Button text='SIGN UP' isPrimary={true} theme={theme} size="large" paddings="12px 16px"/>
+          </div>
       </div>
     </div>
   );
