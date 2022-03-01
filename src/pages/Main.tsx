@@ -42,6 +42,22 @@ function Main() {
     id: 22,
     author: "James Whistler",
     painting: "Arrangement in Grey and Black",
+  }, {
+    id: 51,
+    author: "James Whistler",
+    painting: "Arrangement in Grey and Black",
+  }, {
+    id: 61,
+    author: "James Whistler",
+    painting: "Alice Butt",
+  }, {
+    id: 72,
+    author: "James Whistler",
+    painting: "Old Battersea Bridge",
+  }, {
+    id: 82,
+    author: "James Whistler",
+    painting: "Arrangement in Grey and Black",
   }];
 
   return (

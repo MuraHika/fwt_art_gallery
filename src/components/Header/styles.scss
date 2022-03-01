@@ -1,8 +1,10 @@
 @import "../../styles.scss";
 .sticky {
-    position: sticky;
+    // position: sticky;
     top: 0;
     z-index: 5;
+    position: fixed;
+    overflow-x: hidden;
 }
 
 .header {
@@ -12,10 +14,11 @@
     padding: 20px;
     @include _320 {
         position: fixed;
-        z-index: 10;
+        z-index: 8;
         padding: 0;
+        padding-top: 15px;
         width: 100%;
-        height: 100%;
+        height: 70px;
         justify-content: center;
     }
     align-items: center;
@@ -31,21 +34,51 @@
 .burgermenu {
     cursor: pointer;
     display: flex;
-    align-self: flex-end;
-    margin-bottom: 38px;
+    align-self: center;
 }
 
 .header-buttons--mobile {
     display: flex;
     flex-direction: column;
-    width: 85%;
+    width: 100%;
+    // width: -moz-available;          /* WebKit-based browsers will ignore this. */
+    // width: -webkit-fill-available;  /* Mozilla-based browsers will ignore this. */
+    // width: fill-available;
     align-items: center;
     position: absolute;
-    margin-top: 53px;
+    // margin-top: 53px;
     height: 100%;
+    background-color: $main-color__black;
+    padding-top: 10px;
+    // right: -100%;
+    transition: transform 0.35s;
+    transform: translate3d(100%, 0, 0);
 }
 
-.header-buttons--mobile>svg {
+.header-buttons--burgerActive {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: inherit;
+  z-index: 10;
+  // width: -moz-available;          /* WebKit-based browsers will ignore this. */
+  // width: -webkit-fill-available;  /* Mozilla-based browsers will ignore this. */
+  // width: fill-available;
+  align-items: center;
+  position: absolute;
+  // margin-top: 53px;
+  height: 100%;
+  background-color: $main-color__black;
+  padding-top: 38px;
+  padding-bottom: 100px;
+  // right: -0%;
+
+  transition: transform 0.35s;
+  transform: translate3d(0%, 0, 0);
+}
+
+.header-buttons--mobile>svg,
+.header-buttons--burgerActive > svg {
     display: flex;
     align-self: flex-end;
     margin-bottom: 38px;
@@ -69,8 +102,25 @@
     margin-left: 12px;
 }
 
-.header-buttons--mobile>button {
+.header-buttons--mobile>button,
+.header-buttons--burgerActive > button {
     // position: absolute;
+    width: 95%;
+    margin-bottom: 15px;
+}
+
+.header-moblie-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
     width: 100%;
-    margin-top: 15px;
+    padding: 0 15px;
+}
+
+.close_button {
+    cursor: pointer;
+    padding-right: 15px;
+    align-self: flex-end;
+    padding-bottom: 53px;
 }

@@ -6,6 +6,7 @@ import Close from "../../assets/Close.svg";
 import Button from "../Button/index";
 import BurgerMenu from "../../assets/burger_menu.svg";
 import ResizeScreen from "../../utils/ScreenSize";
+import HeaderButtons from "../HeaderButtons/index";
 
 interface HeaderProps {
   theme?: "dark" | "light";
@@ -13,26 +14,42 @@ interface HeaderProps {
 
 function Header({ theme } : HeaderProps) {
   const screen = ResizeScreen();
-  const [classesBurger, setClassesBurger] = useState<string>();
-  const [isBurger, setIsBurger] = useState<boolean>(true);
+  const [classesBurger, setClassesBurger] = useState<string>("");
+  const [isBurger, setIsBurger] = useState<boolean>(false);
   useEffect(() => {
+    console.log("ddd");
     if (screen.isMobile) {
-      setClassesBurger("header-buttons--mobile");
+      if (!isBurger){
+        setClassesBurger("header-buttons--mobile");
+      } else {
+        setClassesBurger("header-buttons--burgerActive");
+      } 
     } else {
       setClassesBurger("header-buttons");
     }
   }, [screen]);
+
+  const setClassToBurger = (burgerClass : string) => {
+    console.log(burgerClass);
+    setIsBurger(!isBurger);
+    setClassesBurger(burgerClass);
+  };
+
   return (
-    <div style={{ width: "100%" }} className="sticky">
+    <div style={{ width: "100%", height: "100%" }} className="sticky">
+      {screen.isMobile && <HeaderButtons theme={theme} classesBurger={classesBurger} setClassToBurger={setClassToBurger} />}
       <div className={`header header--${theme}`} >
-          {!isBurger && <Logo />}
-          {screen.isMobile && !isBurger && <div onClick={() => setIsBurger(true)}  className="burgermenu"><BurgerMenu /></div>}
-          <div className={classesBurger}>
-            {isBurger && <div onClick={() => setIsBurger(false)} className="burgermenu"><Close /></div>}
+          <div className={`${screen.isMobile ? "header-moblie-row" : ""}`}>
+            <Logo />
+            {screen.isMobile && <div onClick={() => setClassToBurger("header-buttons--burgerActive")}  className="burgermenu"><BurgerMenu /></div>}
+          </div>
+          {!screen.isMobile && <HeaderButtons theme={theme} classesBurger="header-buttons" setClassToBurger={setClassToBurger} />}
+          {/* <div className={classesBurger}>
+            {screen.isMobile && <div onClick={() => setClassToBurger("header-buttons--mobile")} className="burgermenu"><Close /></div>}
             <Button className='header-button' text={<Theme />} isPrimary={false} theme={theme} size="medium" paddings="12px"/>
             <Button text='LOG IN' isPrimary={false} theme={theme} size="large" paddings="12px 16px"/>
             <Button text='SIGN UP' isPrimary={true} theme={theme} size="large" paddings="12px 16px"/>
-          </div>
+          </div> */}
       </div>
     </div>
   );
