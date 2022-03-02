@@ -1,0 +1,89 @@
+{
+  "artists": [
+    {
+      "id": 1,
+      "name": "James Whistler",
+      "years_live": "",
+      "painting": "Old Battersea Bridge",
+      "created": "",
+      "image": ""
+    }, {
+      "id": 2,
+      "name": "James Whistler",
+      "years_live": "",
+      "painting": "Arrangement in Grey and Black",
+      "created": "",
+      "image": ""
+    }, {
+      "id": 3,
+      "name": "James Whistler",
+      "years_live": "",
+      "painting": "Alice Butt",
+      "created": "",
+      "image": ""
+    }, {
+      "id": 4,
+      "name": "James Whistler",
+      "years_live": "",
+      "painting": "Whistler in his Studio",
+      "created": "",
+      "image": ""
+    }, {
+      "id": 11,
+      "name": "James Whistler",
+      "years_live": "",
+      "painting": "Old Battersea Bridge",
+      "created": "",
+      "image": ""
+    }, {
+      "id": 21,
+      "name": "James Whistler",
+      "years_live": "",
+      "painting": "Arrangement in Grey and Black",
+      "created": "",
+      "image": ""
+    }, {
+      "id": 31,
+      "name": "James Whistler",
+      "years_live": "",
+      "painting": "Alice Butt",
+      "created": "",
+      "image": ""
+    }, {
+      "id": 41,
+      "name": "James Whistler",
+      "years_live": "",
+      "painting": "Whistler in his Studio",
+      "created": "",
+      "image": ""
+    },{
+      "id": 12,
+      "name": "James Whistler",
+      "years_live": "",
+      "painting": "Old Battersea Bridge",
+      "created": "",
+      "image": ""
+    }, {
+      "id": 22,
+      "name": "James Whistler",
+      "years_live": "",
+      "painting": "Arrangement in Grey and Black",
+      "created": "",
+      "image": ""
+    }, {
+      "id": 32,
+      "name": "James Whistler",
+      "years_live": "",
+      "painting": "Alice Butt",
+      "created": "",
+      "image": ""
+    }, {
+      "id": 42,
+      "name": "James Whistler",
+      "years_live": "",
+      "painting": "Whistler in his Studio",
+      "created": "",
+      "image": ""
+    }
+  ]
+}
