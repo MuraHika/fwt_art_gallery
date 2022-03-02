@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import "./styles.scss";
 import Logo from "../../assets/Logo.svg";
-import Theme from "../../assets/Theme.svg";
-import Close from "../../assets/Close.svg";
-import Button from "../Button/index";
 import BurgerMenu from "../../assets/burger_menu.svg";
 import ResizeScreen from "../../utils/ScreenSize";
 import HeaderButtons from "../HeaderButtons/index";
@@ -36,7 +33,7 @@ function Header({ theme } : HeaderProps) {
   };
 
   return (
-    <div style={{ width: "100%", height: "100%" }} className="sticky">
+    <div style={{ width: "100%" }} className={`sticky ${isBurger ? "sticky-burger" : ""}`}>
       {screen.isMobile && <HeaderButtons theme={theme} classesBurger={classesBurger} setClassToBurger={setClassToBurger} />}
       <div className={`header header--${theme}`} >
           <div className={`${screen.isMobile ? "header-moblie-row" : ""}`}>
@@ -44,12 +41,6 @@ function Header({ theme } : HeaderProps) {
             {screen.isMobile && <div onClick={() => setClassToBurger("header-buttons--burgerActive")}  className="burgermenu"><BurgerMenu /></div>}
           </div>
           {!screen.isMobile && <HeaderButtons theme={theme} classesBurger="header-buttons" setClassToBurger={setClassToBurger} />}
-          {/* <div className={classesBurger}>
-            {screen.isMobile && <div onClick={() => setClassToBurger("header-buttons--mobile")} className="burgermenu"><Close /></div>}
-            <Button className='header-button' text={<Theme />} isPrimary={false} theme={theme} size="medium" paddings="12px"/>
-            <Button text='LOG IN' isPrimary={false} theme={theme} size="large" paddings="12px 16px"/>
-            <Button text='SIGN UP' isPrimary={true} theme={theme} size="large" paddings="12px 16px"/>
-          </div> */}
       </div>
     </div>
   );

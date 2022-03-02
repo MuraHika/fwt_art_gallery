@@ -61,9 +61,11 @@ function Main() {
   }];
 
   return (
-    < div className={`main_page main_page--${theme}`}>
+    <div className={`main_page main_page--${theme}`}>
       <Header theme={theme} />
-      <GridLayout items={artists} theme={theme}/>
+      <div className="grid_layout">
+        <GridLayout items={artists} theme={theme}/>
+      </div>
       <Footer theme={theme} />
     </div>
   );

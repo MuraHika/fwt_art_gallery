@@ -2,7 +2,6 @@
 
 .footer {
   padding: 0 20px;
-  // margin-top: 10px;
   @include _320 {
     padding: 0 15px;
   }
@@ -20,7 +19,6 @@
 
 .footer--light {
   background-color: $main-color__white;
-  // border-top: 2px solid rgba(0, 0, 0, 0.3);
 }
 
 .footer-p--light {
@@ -29,7 +27,6 @@
 
 .footer--dark {
   background-color: $main-color__black;
-  // border-top: 2px solid rgba(255, 255, 255, 0.3);
 }
 
 .footer-p--dark {
@@ -47,12 +44,12 @@
   }
 }
 
-.left_column {
+.footer-title {
   display: flex;
   flex-direction: column;
 }
 
-.left_column span {
+.footer-title span {
   font-size: $size_font__18;
   font-weight: $weight_font__bold;
   @include _320 {
@@ -61,15 +58,15 @@
   }
 }
 
-.left_column__span--dark {
+.footer-title__span--dark {
   color: $main-color__white;
 }
 
-.left_column__span--light {
+.footer-title__span--light {
   color: $main-color__black;
 }
 
-.right_column > a > svg  {
+.icons > a > svg  {
   margin-left: 20px;
   width: 22px;
   height: 22px;
@@ -80,7 +77,7 @@
   }
 }
 
-.right_column--dark {
+.icons--dark {
   a > svg > path {
     fill: $main-color__white;
   }
@@ -92,7 +89,7 @@
   }
 }
 
-.right_column--light {
+.icons--light {
   a > svg > path {
     fill: $main-color__black;
   }
