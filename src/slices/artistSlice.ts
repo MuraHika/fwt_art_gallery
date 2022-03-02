@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { WritableDraft } from "immer/dist/types/types-external";
-// import { artists } from "../../db.json";
+import { artists } from "../../db.json";
 
 interface TypeArtists {
   id: string | number;
@@ -12,13 +12,13 @@ interface TypeArtists {
 }
 
 type SliceState = {
-  artists: TypeArtists[],
+  arr_artists: TypeArtists[],
   status: null | string,
   error: null | string,
 };
 
 const initialState : SliceState = {
-  artists: [],
+  arr_artists: artists,
   status: null,
   error: null,
 };
@@ -28,7 +28,7 @@ export const getArtists = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       console.log("work");
-      return [];
+      return artists;
     } catch (error) {
       return rejectWithValue((error as Error).message);
     }
@@ -51,7 +51,7 @@ const taskSlice = createSlice({
     });
     builder.addCase(getArtists.fulfilled, (state, action) => {
       state.status = "resolved";
-      state.artists = action.payload;
+      state.arr_artists = action.payload;
     });
     builder.addCase(getArtists.rejected, setError);
   },
