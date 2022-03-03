@@ -78,25 +78,35 @@
 }
 
 .icons--dark {
-  a > svg > path {
-    fill: $main-color__white;
-  }
+  a > svg > path,
   a.insta_logo > svg > circle {
     fill: $main-color__white;
   }
-  a.insta_logo > svg > path {
+  
+  a.insta_logo > svg > path,
+  a.insta_logo:hover > svg > path {
     fill: $main-color__black;
+  }
+
+  a:hover > svg > path,
+  a.insta_logo:hover > svg > circle {
+    fill: $hover-color;
   }
 }
 
 .icons--light {
-  a > svg > path {
-    fill: $main-color__black;
-  }
+  a > svg > path,
   a.insta_logo > svg > circle {
     fill: $main-color__black;
   }
-  a.insta_logo > svg > path {
+
+  a.insta_logo > svg > path,
+  a.insta_logo:hover > svg > path{
     fill: $main-color__white;
+  }
+
+  a:hover > svg > path,
+  a.insta_logo:hover > svg > circle {
+    fill: $button-color;
   }
 }

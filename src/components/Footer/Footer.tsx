@@ -33,7 +33,7 @@ function Footer({ theme } : FooterProps) {
         </div>
           <div className='footer-row'>
             <p className={`footer-p--${theme}`}>
-              Сажникова Ольга, 2021
+              Сажникова Ольга, 2022
             </p>
           </div>
       </div>

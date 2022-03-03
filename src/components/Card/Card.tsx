@@ -31,23 +31,26 @@ export default function Card({
   };
   return (
     <div className="container-card" 
-    style={{ backgroundImage: `url(${urlImage})` }}
-    onClick={onClick}
+      style={{ backgroundImage: `url(${urlImage})` }}
+      onClick={onClick}
     >
       <div className={`container-card__footer ${isTabletScreen ? "container-card__footer--hover" : ""}`} onClick={onTapFooter}>
         <h1>{author_name}</h1>
-        <div className="container-card__footer__row">
+        { date_created &&  <div className="container-card__footer__row">
           <h2 className='row__years'>{years_live}</h2>
         </div>
-        <div className="container-card__footer__row">
-          <h2>Name: </h2>
-          <p>{picture_name}</p>
-        </div>
-        { date_created && <div className="container-card__footer__row">
-          <h2>Created: </h2>
-          <p>{date_created}</p>
-        </div>
         }
+        <div className='picture-info'>
+          <div className="container-card__footer__row">
+            <h2>Name: </h2>
+            <p>{picture_name}</p>
+          </div>
+          { date_created && <div className="container-card__footer__row">
+            <h2>Created: </h2>
+            <p>{date_created}</p>
+          </div>
+          }
+        </div>
       </div>
     </div>
   );

@@ -13,12 +13,14 @@ interface TypeArtists {
 
 type SliceState = {
   arr_artists: TypeArtists[],
+  theme: "light" | "dark",
   status: null | string,
   error: null | string,
 };
 
 const initialState : SliceState = {
   arr_artists: [],
+  theme: "light",
   status: null,
   error: null,
 };
@@ -35,6 +37,20 @@ export const getArtists = createAsyncThunk(
   },
 );
 
+export const setTheme = createAsyncThunk(
+  "artists/setTheme",
+  async ( theme: string, { rejectWithValue, dispatch }) => {
+    try {
+      console.log(theme);
+      document.cookie = `theme=${theme}`;
+      dispatch(setNewTheme(theme));
+      return theme;
+    } catch (error) {
+      return rejectWithValue((error as Error).message);
+    }
+  },
+);
+
 const setError = (state: any, action: any) => {
   state.status = "rejected";
   state.error = action.payload;
@@ -43,7 +59,11 @@ const setError = (state: any, action: any) => {
 const artistSlice = createSlice({
   name: "artists",
   initialState,
-  reducers: {},
+  reducers: {
+    setNewTheme(state, action) {
+      state.theme = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(getArtists.pending, (state) => {
       state.status = "loading";
@@ -57,7 +77,5 @@ const artistSlice = createSlice({
   },
 });
 
-// export const {
-//   getArtists,
-// } = taskSlice.actions;
+export const { setNewTheme } = artistSlice.actions;
 export default artistSlice.reducer;

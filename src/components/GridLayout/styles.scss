@@ -16,32 +16,23 @@
 }
 
 div > .container-card {
-  // max-width: 100px;
-  // width: 30%;
   width: calc(229px + (315 - 229) * ((100vw - 769px) / (1024 - 769))) ;
   max-width: 315px;
   height: calc(190px + (260 - 190) * ((100vw - 769px) / (1024 - 769))) ;
   max-height: 260px;
 
   @include _768 {
-    // height: 190px;
     // calc([min size]px + ([max size] — [min size]) * ((100vw — [min vw width]px) / ([max vw width] — [min vw width]))) 
     height: calc(115px + (190 - 115) * ((100vw - 501px) / (768 - 501))) ;
     max-height: 190px;
-    // width: 30%;
-    // max-width: 29%;
     width: calc(130px + (229 - 130) * ((100vw - 501px) / (768 - 501))) ;
     max-width: 229px;
-    // min-width: 130px;
   }
 
   @include _320 {
-    // height: 120px;
     height: calc(120px + (165 - 120) * ((100vw - 320px) / (500 - 320))) ;
     max-height: 165px;
     min-height: 120px;
-    // max-width: 45%;
-    // min-width: 45%;
     width: calc(137px + (145 - 137) * ((100vw - 320px) / (500 - 320))) ;
     max-width: 145px;
     min-width: 137px;

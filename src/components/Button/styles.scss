@@ -27,9 +27,19 @@
   color: $main-color__black;
 }
 
+.button--primary_dark:hover,
+.button--primary_dark:active {
+  background-color: $hover-color;
+}
+
 .button--primary_light {
   background-color: $main-color__black;
   color: $main-color__white;
+}
+
+.button--primary_light:hover,
+.button--primary_light:active {
+  background-color: $button-color;
 }
 
 .button--secondary_dark {
@@ -38,8 +48,26 @@
   color: $main-color__white;
 }
 
+.button--secondary_dark:hover,
+.button--secondary_dark:active {
+  border: 1px solid $hover-color;
+  color: $hover-color;
+  svg>path {
+    stroke: $hover-color;
+  }
+}
+
 .button--secondary_light {
-  background: $main-color__white;
+  background-color: $main-color__white;
   border: 1px solid $main-color__black;
   color: $main-color__black;
+}
+
+.button--secondary_light:hover,
+.button--secondary_light:active {
+  border: 1px solid $button-color;
+  color: $button-color;
+  svg>path {
+    stroke: $button-color;
+  }
 }

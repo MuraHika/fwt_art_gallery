@@ -37,7 +37,7 @@ function Header({ theme } : HeaderProps) {
       {screen.isMobile && <HeaderButtons theme={theme} classesBurger={classesBurger} setClassToBurger={setClassToBurger} />}
       <div className={`header header--${theme}`} >
           <div className={`${screen.isMobile ? "header-moblie-row" : ""}`}>
-            <Logo />
+            <div className='logo'><Logo /></div>
             {screen.isMobile && <div onClick={() => setClassToBurger("header-buttons--burgerActive")}  className="burgermenu"><BurgerMenu /></div>}
           </div>
           {!screen.isMobile && <HeaderButtons theme={theme} classesBurger="header-buttons" setClassToBurger={setClassToBurger} />}

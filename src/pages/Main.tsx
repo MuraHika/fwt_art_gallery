@@ -6,8 +6,8 @@ import { useAppSelector } from "../hooks/useToolkit";
 import "./styles.scss";
 
 function Main() {
-  const theme = "dark";
   const artists = useAppSelector((state) => state.artists.arr_artists);
+  const theme = useAppSelector((state) => state.artists.theme);
 
   return (
     <div className={`main_page main_page--${theme}`}>
