@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { WritableDraft } from "immer/dist/types/types-external";
-import { artists } from "../../db.json";
+// import { WritableDraft } from "immer/dist/types/types-external";
+import * as  data from "../../db.json";
 
 interface TypeArtists {
   id: string | number;
@@ -18,7 +18,7 @@ type SliceState = {
 };
 
 const initialState : SliceState = {
-  arr_artists: artists,
+  arr_artists: [],
   status: null,
   error: null,
 };
@@ -27,21 +27,21 @@ export const getArtists = createAsyncThunk(
   "artists/getArtists",
   async (_, { rejectWithValue }) => {
     try {
-      console.log("work");
-      return artists;
+      console.log(data);
+      return data;
     } catch (error) {
       return rejectWithValue((error as Error).message);
     }
   },
 );
 
-const setError = (state: WritableDraft<SliceState>, action: any) => {
+const setError = (state: any, action: any) => {
   state.status = "rejected";
   state.error = action.payload;
 };
 
-const taskSlice = createSlice({
-  name: "tasks",
+const artistSlice = createSlice({
+  name: "artists",
   initialState,
   reducers: {},
   extraReducers: (builder) => {
@@ -51,7 +51,7 @@ const taskSlice = createSlice({
     });
     builder.addCase(getArtists.fulfilled, (state, action) => {
       state.status = "resolved";
-      state.arr_artists = action.payload;
+      state.arr_artists = action.payload.artists;
     });
     builder.addCase(getArtists.rejected, setError);
   },
@@ -60,4 +60,4 @@ const taskSlice = createSlice({
 // export const {
 //   getArtists,
 // } = taskSlice.actions;
-export default taskSlice.reducer;
+export default artistSlice.reducer;

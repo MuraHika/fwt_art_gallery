@@ -23,7 +23,7 @@ export default function Card({
   const [isTabletScreen, setisTabletScreen] = useState(false);
   const screen = ResizeScreen();
 
-  const urlImage = src_img === undefined ? NoImage : src_img;
+  const urlImage = src_img === "" ? NoImage : src_img;
   const onTapFooter = () => {
     if (screen.isTabltet) {
       setisTabletScreen(!isTabletScreen);

@@ -3,14 +3,14 @@
     {
       "id": 1,
       "name": "James Whistler",
-      "years_live": "",
+      "years_live": "(1900-1930)",
       "painting": "Old Battersea Bridge",
       "created": "",
       "image": ""
     }, {
       "id": 2,
       "name": "James Whistler",
-      "years_live": "",
+      "years_live": "(1900-1930)",
       "painting": "Arrangement in Grey and Black",
       "created": "",
       "image": ""
@@ -24,7 +24,7 @@
     }, {
       "id": 4,
       "name": "James Whistler",
-      "years_live": "",
+      "years_live": "(1900-1930)",
       "painting": "Whistler in his Studio",
       "created": "",
       "image": ""
@@ -45,14 +45,14 @@
     }, {
       "id": 31,
       "name": "James Whistler",
-      "years_live": "",
+      "years_live": "(1900-1930)",
       "painting": "Alice Butt",
       "created": "",
       "image": ""
     }, {
       "id": 41,
       "name": "James Whistler",
-      "years_live": "",
+      "years_live": "(1900-1930)",
       "painting": "Whistler in his Studio",
       "created": "",
       "image": ""
@@ -66,7 +66,7 @@
     }, {
       "id": 22,
       "name": "James Whistler",
-      "years_live": "",
+      "years_live": "(1900-1930)",
       "painting": "Arrangement in Grey and Black",
       "created": "",
       "image": ""
@@ -80,7 +80,7 @@
     }, {
       "id": 42,
       "name": "James Whistler",
-      "years_live": "",
+      "years_live": "(1900-1930)",
       "painting": "Whistler in his Studio",
       "created": "",
       "image": ""

@@ -24,7 +24,15 @@ export default function GridLayout(
   return (
     <div className={`grid grid--${theme}`}>
       {items.map((el) => (
-        <Card key={el.id} author_name={el.author} picture_name={el.painting} onClick={onClickPicture} />
+        <Card 
+          key={el.id} 
+          author_name={el.name} 
+          picture_name={el.painting} 
+          date_created={el.created} 
+          src_img={el.image} 
+          years_live={el.years_live} 
+          onClick={onClickPicture} 
+        />
       ),
       )}
     </div>
