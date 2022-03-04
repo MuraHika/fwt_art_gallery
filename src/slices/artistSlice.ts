@@ -1,6 +1,9 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 // import { WritableDraft } from "immer/dist/types/types-external";
+import axios from 'axios';
 import * as  data from "../../db.json";
+
+
 
 interface TypeArtists {
   id: string | number;
@@ -14,6 +17,7 @@ interface TypeArtists {
 type SliceState = {
   arr_artists: TypeArtists[],
   theme: "light" | "dark",
+  loading: boolean,
   status: null | string,
   error: null | string,
 };
@@ -21,15 +25,18 @@ type SliceState = {
 const initialState : SliceState = {
   arr_artists: [],
   theme: "light",
+  loading: true,
   status: null,
   error: null,
 };
 
 export const getArtists = createAsyncThunk(
   "artists/getArtists",
-  async (_, { rejectWithValue }) => {
+  async (_, { rejectWithValue, dispatch }) => {
     try {
-      console.log(data);
+      dispatch(setLoading(true));
+      const arts = await axios.get(`https://localhost:3000/artists/static`);
+      console.log(arts);
       return data;
     } catch (error) {
       return rejectWithValue((error as Error).message);
@@ -63,6 +70,9 @@ const artistSlice = createSlice({
     setNewTheme(state, action) {
       state.theme = action.payload;
     },
+    setLoading(state, action) {
+      state.loading = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(getArtists.pending, (state) => {
@@ -72,10 +82,11 @@ const artistSlice = createSlice({
     builder.addCase(getArtists.fulfilled, (state, action) => {
       state.status = "resolved";
       state.arr_artists = action.payload.artists;
+      state.loading = false;
     });
     builder.addCase(getArtists.rejected, setError);
   },
 });
 
-export const { setNewTheme } = artistSlice.actions;
+export const { setNewTheme, setLoading } = artistSlice.actions;
 export default artistSlice.reducer;

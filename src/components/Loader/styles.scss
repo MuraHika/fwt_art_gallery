@@ -1,0 +1,102 @@
+@import "../../styles.scss";
+
+.loader { 
+  display: flex;
+  flex-direction: row;
+  margin-top: 200px;
+  height: 100vh;
+}
+
+.loader-animate {
+  width: 70px;
+  justify-content: space-between;
+  display: flex;
+}
+
+.loader-animate--dark svg circle {
+  animation: change_fill_dark 0.7s linear infinite;
+}
+
+.loader-animate--light svg circle {
+  animation: change_fill_light 0.7s linear infinite;
+}
+
+.loader-animate--dark svg:nth-child(1) {
+  circle{
+    fill: none;
+    stroke: $main-color__white;
+    stroke-width: 2px;
+
+    animation-delay: 0s;
+  }
+}
+
+.loader-animate--dark svg:nth-child(2){
+  circle{
+    fill: none;
+    stroke: $main-color__white;
+    stroke-width: 2px;
+    
+    animation-delay: 0.2s;
+  }
+}
+
+.loader-animate--dark svg:nth-child(3)  {
+  circle{
+    fill: none;
+    stroke: $main-color__white;
+    stroke-width: 2px;
+
+    animation-delay: 0.4s;
+  }
+}
+
+.loader-animate--light svg:nth-child(1) {
+  circle{
+    fill: none;
+    stroke: $main-color__black;
+    stroke-width: 2px;
+
+    animation-delay: 0s;
+  }
+}
+
+.loader-animate--light svg:nth-child(2){
+  circle{
+    fill: none;
+    stroke: $main-color__black;
+    stroke-width: 2px;
+    
+    animation-delay: 0.2s;
+  }
+}
+
+.loader-animate--light svg:nth-child(3)  {
+  circle{
+    fill: none;
+    stroke: $main-color__black;
+    stroke-width: 2px;
+
+    animation-delay: 0.4s;
+  }
+}
+
+@keyframes change_fill_dark {
+  0% { 
+    fill: none;
+    stroke: $main-color__white; 
+  }
+  100% { 
+    fill: $main-color__white;
+  }
+}
+
+@keyframes change_fill_light {
+  0% { 
+    fill: none;
+    stroke: $main-color__black; 
+  }
+  100% { 
+    fill: $main-color__black;
+  }
+}

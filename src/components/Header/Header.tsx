@@ -14,7 +14,6 @@ function Header({ theme } : HeaderProps) {
   const [classesBurger, setClassesBurger] = useState<string>("");
   const [isBurger, setIsBurger] = useState<boolean>(false);
   useEffect(() => {
-    console.log("ddd");
     if (screen.isMobile) {
       if (!isBurger){
         setClassesBurger("header-buttons--mobile");
@@ -27,7 +26,6 @@ function Header({ theme } : HeaderProps) {
   }, [screen]);
 
   const setClassToBurger = (burgerClass : string) => {
-    console.log(burgerClass);
     setIsBurger(!isBurger);
     setClassesBurger(burgerClass);
   };
@@ -38,7 +36,7 @@ function Header({ theme } : HeaderProps) {
       <div className={`header header--${theme}`} >
           <div className={`${screen.isMobile ? "header-moblie-row" : ""}`}>
             <div className='logo'><Logo /></div>
-            {screen.isMobile && <div onClick={() => setClassToBurger("header-buttons--burgerActive")}  className="burgermenu"><BurgerMenu /></div>}
+            {screen.isMobile && <div onClick={() => setClassToBurger(`header-buttons--burgerActive header-buttons--${theme}`)}  className="burgermenu"><BurgerMenu /></div>}
           </div>
           {!screen.isMobile && <HeaderButtons theme={theme} classesBurger="header-buttons" setClassToBurger={setClassToBurger} />}
       </div>
