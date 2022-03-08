@@ -52,7 +52,13 @@ module.exports = {
     hot: true,
     liveReload: false,
     open:true,
-    // port: 8000,
+    port: 3001,
+    proxy: {
+      '/artists/': {
+        target: 'http://localhost:3001',
+        secure: false,
+      },
+    },
   },
   output: {
     filename: '[name].js',

@@ -35,7 +35,11 @@ export const getArtists = createAsyncThunk(
   async (_, { rejectWithValue, dispatch }) => {
     try {
       dispatch(setLoading(true));
-      const arts = await axios.get(`https://localhost:3000/artists/static`);
+      const arts = await axios.get(`http://localhost:3000/artists/static`, {
+        headers:{
+          "accepts":"application/json",
+        },
+      });
       console.log(arts);
       return data;
     } catch (error) {
