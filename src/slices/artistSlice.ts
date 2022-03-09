@@ -36,9 +36,14 @@ export const getArtists = createAsyncThunk(
     try {
       dispatch(setLoading(true));
       const arts = await axios.get(`http://localhost:3000/artists/static`, {
-        headers:{
-          "accepts":"application/json",
+        method: 'GET',
+        // mode: 'no-cors',
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Content-Type': 'application/json',
         },
+        withCredentials: true,
+        // credentials: 'same-origin',
       });
       console.log(arts);
       return data;
