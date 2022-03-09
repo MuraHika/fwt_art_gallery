@@ -18,6 +18,7 @@ type SliceState = {
   arr_artists: TypeArtists[],
   theme: "light" | "dark",
   loading: boolean,
+  isLogin: boolean,
   status: null | string,
   error: null | string,
 };
@@ -26,6 +27,7 @@ const initialState : SliceState = {
   arr_artists: [],
   theme: "light",
   loading: true,
+  isLogin: false,
   status: null,
   error: null,
 };
@@ -40,7 +42,8 @@ export const getArtists = createAsyncThunk(
         // mode: 'no-cors',
         headers: {
           'Access-Control-Allow-Origin': '*',
-          'Content-Type': 'application/json',
+          'Access-Control-Allow-Headers': '*',
+          'Content-Type': 'application/json;charset=UTF-8',
         },
         withCredentials: true,
         // credentials: 'same-origin',
@@ -82,6 +85,9 @@ const artistSlice = createSlice({
     setLoading(state, action) {
       state.loading = action.payload;
     },
+    setLogin(state, action){
+      state.isLogin = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(getArtists.pending, (state) => {
@@ -97,5 +103,5 @@ const artistSlice = createSlice({
   },
 });
 
-export const { setNewTheme, setLoading } = artistSlice.actions;
+export const { setNewTheme, setLoading, setLogin } = artistSlice.actions;
 export default artistSlice.reducer;

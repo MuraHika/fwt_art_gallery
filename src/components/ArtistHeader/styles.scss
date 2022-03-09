@@ -1,0 +1,60 @@
+@import "../../styles.scss";
+
+.artist-container {
+
+  padding: 0 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 100px;
+  width: 100%;
+
+  font-family: $family_font;
+}
+
+.artist-profile {
+  display: flex;
+  flex-direction: column;
+  width: auto;
+}
+
+.artist-profile--light {
+  .artist_profile-name {
+    color: $main-color__black
+  }
+}
+
+.artist-profile--dark {
+  .artist_profile-name {
+    color: $main-color__white
+  }
+}
+
+.artist-info {
+  display: flex;
+  flex-direction: column;
+  width: auto;
+}
+
+.artist_profile-picture {
+  max-width: 482px;
+  max-height: 350px;
+  width: 482px;
+  height: 350px;
+  margin-bottom: 20px;
+  margin-right: 20px;
+}
+
+.artist_profile-name {
+  font-size: $size_font__25;
+  font-weight: $weight_font__black;
+  text-transform: uppercase;
+}
+
+.artist_profile-year {
+  margin-top: 10px;
+  color: $secondary-color;
+  font-size: $size_font__14;
+  font-weight: $weight_font__regular;
+  font-variant: small-caps;
+}
