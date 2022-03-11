@@ -5,12 +5,14 @@ import Card from "../Card/index";
 
 
 type TypeArtists = {
-  id: string | number;
+  id: string;
+  paintings: string[];
+  genres: string[];
   name: string;
-  years_live?: string;
-  painting: string;
-  created?: string;
-  image?: string;
+  description:string;
+  yearsOfLife?: string;
+  avatar: string;
+  mainPainting: string;
 };
 
 interface TypePaint {

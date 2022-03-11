@@ -3,19 +3,34 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from 'axios';
 import * as  data from "../../db.json";
 
-
-
 interface TypeArtists {
-  id: string | number;
+  id: string;
+  paintings: string[];
+  genres: string[];
   name: string;
-  years_live: string;
-  painting: string;
-  created: string;
+  description:string;
+  yearsOfLife: string;
+  avatar: string;
+  mainPainting: string;
+}
+
+interface TypePaintings {
+  id: string;
+  name: string;
+  yearOfCreation: string;
   image: string;
+  artist: string;
+}
+
+interface TypeGenres {
+  id: string;
+  name: string;
 }
 
 type SliceState = {
   arr_artists: TypeArtists[],
+  arr_genres: TypeGenres[],
+  arr_paintings: TypePaintings[],
   theme: "light" | "dark",
   loading: boolean,
   isLogin: boolean,
@@ -25,6 +40,8 @@ type SliceState = {
 
 const initialState : SliceState = {
   arr_artists: [],
+  arr_genres: [],
+  arr_paintings: [],
   theme: "light",
   loading: false,
   isLogin: false,
@@ -37,19 +54,47 @@ export const getArtists = createAsyncThunk(
   async (_, { rejectWithValue, dispatch }) => {
     try {
       dispatch(setLoading(true));
-      // const arts = await axios.get(`http://localhost:3000/artists/static`, {
-      //   method: 'GET',
-      //   // mode: 'no-cors',
-      //   headers: {
-      //     'Access-Control-Allow-Origin': '*',
-      //     'Access-Control-Allow-Headers': '*',
-      //     'Content-Type': 'application/json;charset=UTF-8',
-      //   },
-      //   withCredentials: true,
-      //   // credentials: 'same-origin',
-      // });
-      // console.log(arts);
-      return data;
+      const arts = await axios.get(`http://localhost:3002/artists/`, {
+        method: 'GET',
+        // mode: 'no-cors',
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Headers': '*',
+          'Content-Type': 'application/json;charset=UTF-8',
+        },
+        withCredentials: true,
+        // credentials: 'same-origin',
+      });
+      console.log(arts.data);
+      return arts.data;
+    } catch (error) {
+      return rejectWithValue((error as Error).message);
+    }
+  },
+);
+
+export const getPaintings = createAsyncThunk(
+  "artists/getPaintings",
+  async (_, { rejectWithValue, dispatch }) => {
+    try {
+      dispatch(setLoading(true));
+      const arts = await axios.get(`http://localhost:3002/paintings/`);
+      console.log(arts.data);
+      return arts.data;
+    } catch (error) {
+      return rejectWithValue((error as Error).message);
+    }
+  },
+);
+
+export const getGenres = createAsyncThunk(
+  "artists/getGenres",
+  async (_, { rejectWithValue, dispatch }) => {
+    try {
+      dispatch(setLoading(true));
+      const arts = await axios.get(`http://localhost:3002/genres/`);
+      console.log(arts.data);
+      return arts.data;
     } catch (error) {
       return rejectWithValue((error as Error).message);
     }
@@ -96,10 +141,31 @@ const artistSlice = createSlice({
     });
     builder.addCase(getArtists.fulfilled, (state, action) => {
       state.status = "resolved";
-      state.arr_artists = action.payload.artists;
+      state.arr_artists = action.payload;
       state.loading = false;
     });
+    builder.addCase(getPaintings.pending, (state) => {
+      state.status = "loading";
+      state.error = null;
+    });
+    builder.addCase(getPaintings.fulfilled, (state, action) => {
+      state.status = "resolved";
+      state.arr_paintings = action.payload;
+      state.loading = false;
+    });
+    builder.addCase(getGenres.pending, (state) => {
+      state.status = "loading";
+      state.error = null;
+    });
+    builder.addCase(getGenres.fulfilled, (state, action) => {
+      state.status = "resolved";
+      state.arr_genres = action.payload;
+      state.loading = false;
+    });
+
     builder.addCase(getArtists.rejected, setError);
+    builder.addCase(getPaintings.rejected, setError);
+    builder.addCase(getGenres.rejected, setError);
   },
 });
 

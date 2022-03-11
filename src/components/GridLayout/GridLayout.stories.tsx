@@ -7,29 +7,47 @@ export default {
   component: GridLayout,
 } as ComponentMeta<typeof GridLayout>;
 interface TypeArtists {
-  id: string | number;
+  id: string;
+  paintings: string[];
+  genres: string[];
   name: string;
-  years_live?: string;
-  painting: string;
-  created?: string;
-  image?: string;
+  description:string;
+  yearsOfLife?: string;
+  avatar: string;
+  mainPainting: string;
 }
 const artists: TypeArtists[] = [{
-  id: 1,
+  id: "1",
   name: "James Whistler",
-  painting: "Old Battersea Bridge",
+  description: "dsfcsca",
+  mainPainting: "",
+  avatar: "",
+  genres: [""],
+  paintings: ["Old Battersea Bridge"],
 }, {
-  id: 2,
+  id: "2",
   name: "James Whistler",
-  painting: "Arrangement in Grey and Black",
+  description: "dsfcsca",
+  mainPainting: "",
+  avatar: "",
+  genres: [""],
+  paintings: ["Arrangement in Grey and Black"],
 }, {
-  id: 3,
+  id: "3",
   name: "James Whistler",
-  painting: "Alice Butt",
+  description: "dsfcsca",
+  mainPainting: "",
+  avatar: "",
+  genres: [""],
+  paintings: ["Alice Butt"],
 }, {
-  id: 4,
+  id: "4",
   name: "James Whistler",
-  painting: "Whistler in his Studio",
+  description: "dsfcsca",
+  mainPainting: "",
+  avatar: "",
+  genres: [""],
+  paintings: ["Whistler in his Studio"],
 }];
 const Template: ComponentStory<typeof GridLayout> = (args) => <GridLayout {...args} />;
 
