@@ -26,7 +26,7 @@ type SliceState = {
 const initialState : SliceState = {
   arr_artists: [],
   theme: "light",
-  loading: true,
+  loading: false,
   isLogin: false,
   status: null,
   error: null,
@@ -37,18 +37,18 @@ export const getArtists = createAsyncThunk(
   async (_, { rejectWithValue, dispatch }) => {
     try {
       dispatch(setLoading(true));
-      const arts = await axios.get(`http://localhost:3000/artists/static`, {
-        method: 'GET',
-        // mode: 'no-cors',
-        headers: {
-          'Access-Control-Allow-Origin': '*',
-          'Access-Control-Allow-Headers': '*',
-          'Content-Type': 'application/json;charset=UTF-8',
-        },
-        withCredentials: true,
-        // credentials: 'same-origin',
-      });
-      console.log(arts);
+      // const arts = await axios.get(`http://localhost:3000/artists/static`, {
+      //   method: 'GET',
+      //   // mode: 'no-cors',
+      //   headers: {
+      //     'Access-Control-Allow-Origin': '*',
+      //     'Access-Control-Allow-Headers': '*',
+      //     'Content-Type': 'application/json;charset=UTF-8',
+      //   },
+      //   withCredentials: true,
+      //   // credentials: 'same-origin',
+      // });
+      // console.log(arts);
       return data;
     } catch (error) {
       return rejectWithValue((error as Error).message);

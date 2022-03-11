@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Helmet } from "react-helmet";
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Main from "./pages/Main";
 import Artist from "./pages/Artist";
 import { useAppDispatch } from "./hooks/useToolkit";
@@ -26,8 +26,8 @@ function App() {
         <meta name="FWT" content="FWT Art Gallery" />
       </Helmet>
       <Routes>
-        <Route path="/" element={<Artist />} />
-        <Route path="artist/" element={<Main />} />
+        <Route path="/" element={<Main />} />
+        <Route path="artist/" element={<Artist />} />
       </Routes>
     </div>
   );

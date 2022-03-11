@@ -1,31 +1,43 @@
 @import "../../styles.scss";
 
 .artist-container {
-
   padding: 0 20px;
   display: flex;
   flex-direction: row;
-  align-items: center;
-  margin-top: 100px;
-  width: 100%;
+  justify-content: center;
+  margin-top: 130px;
+  margin-bottom: 20px;
+  max-width: calc(1024px - 20px);
 
   font-family: $family_font;
+  @include _320 {
+    flex-direction: column;
+  }
 }
 
 .artist-profile {
   display: flex;
   flex-direction: column;
-  width: auto;
+  width: 50%;
+  margin-right: 10px;
+  @include _320 {
+    width: 100%;
+    align-items: center;
+    margin-bottom: 15px;
+    margin-right: 0;
+  }
 }
 
-.artist-profile--light {
-  .artist_profile-name {
+.artist-container--light {
+  .artist_profile-name,
+  .artist_info-bio {
     color: $main-color__black
   }
 }
 
-.artist-profile--dark {
-  .artist_profile-name {
+.artist-container--dark {
+  .artist_profile-name,
+  .artist_info-bio {
     color: $main-color__white
   }
 }
@@ -33,28 +45,70 @@
 .artist-info {
   display: flex;
   flex-direction: column;
-  width: auto;
+  width: 50%;
+  margin-left: 10px;
+  @include _320 {
+    margin-left: 0;
+    width: 100%;
+  }
 }
 
 .artist_profile-picture {
-  max-width: 482px;
-  max-height: 350px;
-  width: 482px;
-  height: 350px;
+  // max-width: 482px;
+  // max-height: 350px;
+  // width: 482px;
+  // height: 350px;
+  // width: 100%;
   margin-bottom: 20px;
-  margin-right: 20px;
+  @include _768 {
+    max-height: 310px;
+  }
+  @include _320 {
+    // background-size: contain;
+    background-repeat: no-repeat;
+    object-fit: cover ;
+    width: 100%;
+    max-height: 250px;
+  }
 }
 
 .artist_profile-name {
   font-size: $size_font__25;
   font-weight: $weight_font__black;
   text-transform: uppercase;
+  @include _320 {
+    font-size: $size_font__20;
+  }
+}
+
+.artist_info-bio {
+  font-size: $size_font__14;
+  font-weight: $weight_font__regular;
+  line-height: 24px;
+}
+
+.artist_info-place {
+  margin-top: 20px;
+  color: $secondary-color;
+  font-size: $size_font__14;
+  font-weight: $weight_font__regular;
+  font-variant: small-caps;
 }
 
 .artist_profile-year {
   margin-top: 10px;
   color: $secondary-color;
   font-size: $size_font__14;
-  font-weight: $weight_font__regular;
+  font-weight: $weight_font__light;
   font-variant: small-caps;
+}
+
+.artist-tags {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: space-between;
+  @include _320 {
+    justify-content: space-between;
+  }
 }

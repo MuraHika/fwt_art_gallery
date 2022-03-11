@@ -16,9 +16,9 @@
 }
 
 div > .container-card {
-  width: calc(229px + (315 - 229) * ((100vw - 769px) / (1024 - 769))) ;
+  width: calc(229px + (315 - 229) * ((100vw - 769px) / (1025 - 769))) ;
   max-width: 315px;
-  height: calc(190px + (260 - 190) * ((100vw - 769px) / (1024 - 769))) ;
+  height: calc(190px + (260 - 190) * ((100vw - 769px) / (1025 - 769))) ;
   max-height: 260px;
 
   @include _768 {

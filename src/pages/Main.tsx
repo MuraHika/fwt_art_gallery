@@ -16,7 +16,7 @@ function Main() {
       <Header theme={theme} />
       {loading && <Loader theme={theme}/>}
       {!loading && <div className="grid_layout">
-        <GridLayout items={artists} theme={theme}/>
+        <GridLayout items={{ type: 'artist', array: artists }} theme={theme}/>
       </div>
       }
       <Footer theme={theme} />

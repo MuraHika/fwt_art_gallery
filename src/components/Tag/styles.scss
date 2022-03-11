@@ -1,0 +1,18 @@
+@import "../../styles.scss";
+
+.tag {
+  background: $tags-color;
+  border-radius: 50px;
+  padding: 10px;
+  margin-top: 20px;
+  margin-right: 20px;
+
+  span {
+    font-family: $family_font;
+    font-weight: $weight_font__bold;
+    font-size: $size_font__14;
+    font-variant: small-caps;
+
+    color: $main-color__black;
+  }
+}
