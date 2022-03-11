@@ -1,0 +1,89 @@
+@import "../../styles.scss";
+
+.accordion {
+  font-family: $family_font;
+  font-size: $size_font__14;
+  font-weight: $weight_font__regular;
+  line-height: 24px;
+}
+
+.accordion--light {
+  color: $main-color__black;
+
+  .accordion-button_hide span {
+  color: rgba($main-color__black, 0.25);
+  border-bottom: 1px dashed rgba(rgba($main-color__black, 0.25), 0.25);
+  }
+  svg > path {
+    fill: rgba($main-color__black, 0.25);
+  }
+}
+
+.accordion--dark {
+  color: $main-color__white;
+
+  .accordion-button_hide span {
+  color: rgba($main-color__white, 0.25);
+  border-bottom: 1px dashed rgba(rgba($main-color__white, 0.25), 0.25);
+  }
+  svg > path {
+    fill: rgba($main-color__white, 0.25);
+  }
+}
+
+p {
+  margin: 0;
+}
+
+.accordion-text {
+  @include _320 {
+    display: inline-block;
+  }
+}
+
+.accordion-text--hide {
+  transition: height 1s;
+  overflow-y: hidden;
+}
+
+.accordion-text--show {
+  height: fit-content;
+  transition: height 1s;
+}
+
+.show-text .text::after {
+  content: "...";
+}
+
+.accordion-button_hide {
+  @include _1024; _768 {
+  display: flex;
+  align-items: center;
+  }
+  cursor: pointer;
+}
+
+.accordion-button_hide span {
+  font-weight: $weight_font__light;
+  font-size: $size_font__14;
+  line-height: 16px;
+  font-variant: small-caps;
+}
+
+.accordion svg {
+  margin-left: 5px;
+}
+
+.arrow--hide {
+  svg {
+    transition: transform 0.2s;
+    transform: rotate(0); 
+  }
+}
+
+.arrow--show {
+  svg {
+    transition: transform 0.2s;
+    transform: rotate(180deg); 
+  }
+}
