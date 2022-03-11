@@ -42,11 +42,11 @@ export default function Card({
   };
 
   return (
-    <div className="container-card" 
+    <div className={`container-card ${type === "paint" ? "container-card__paint" : ""}`} 
       style={{ backgroundImage: `url(${urlImage})` }}
     >
-      <div className={`container-card__footer ${isTabletScreen ? "container-card__footer--hover" : ""}`} onClick={onTapFooter}>
-        {type === 'artist' && <>
+      {type === 'artist' && <div className={`container-card__footer ${isTabletScreen ? "container-card__footer--hover" : ""}`} onClick={onTapFooter}>
+         
           <h1>{ob.author_name}</h1>
           { ob.date_created &&  <div className="container-card__footer__row">
             <h2 className='row__years'>{ob.years_live}</h2>
@@ -63,10 +63,9 @@ export default function Card({
             </div>
             }
           </div>
-          </>
-        }
-        {type === 'paint' && <h1>{`${ob.name  }, ${  ob.yearOfCreation}`}</h1>}
       </div>
+      }
+      {type === 'paint' && <div className='container-card-artist__footer'><h1>{`${ob.name  }, ${  ob.yearOfCreation}`}</h1></div>}
     </div>
   );
 }

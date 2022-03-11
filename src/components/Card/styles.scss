@@ -19,6 +19,10 @@
     align-items: flex-start;
 }
 
+.container-card__paint {
+    align-items: flex-end;
+}
+
 .container-card__footer {
     background: rgba(255, 255, 255, 0.75);
     width: 100%;
@@ -41,6 +45,28 @@
      @include _320 {
         margin-top: calc(120px + (123 - 120) * ((100vw - 320px) / (500 - 320))) ;
      }
+}
+
+.container-card-artist__footer {
+    background: rgba(255, 255, 255, 0.75);
+    width: 100%;
+    height: 33px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-left: 0.6rem;
+    padding-right: 0.6rem;
+
+
+    overflow: hidden;
+    max-width: 100%;
+
+    h1 {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 100%;
+    }
 }
 
 .container-card__footer:hover {
@@ -68,25 +94,24 @@
     margin-top: 10px
 }
 
-.container-card__footer h1 {
+h1 {
     font-size: $size_font__18;
     font-weight: $weight_font__bold;
     margin: 0;
     margin-top: 0.5rem;
-    text-overflow: ellipsis;
     @include _320 {
         font-size: $size_font__12;
     }
 }
 
-.container-card__footer h1:after {
-    @include _768 {
-        content: "...";
-    }
-    @include _320 {
-        content: "...";
-    }
-}
+// h1:after {
+//     @include _768 {
+//         content: "...";
+//     }
+//     @include _320 {
+//         content: "...";
+//     }
+// }
 
 .container-card__footer h2 {
     font-size: $size_font__14;
