@@ -1,89 +1,170 @@
 {
   "artists": [
     {
-      "id": 1,
-      "name": "James Whistler",
-      "years_live": "(1900-1930)",
-      "painting": "Old Battersea Bridge",
-      "created": "1958",
-      "image": ""
+      "id": "62220f319b8d0e56d1cea40d",
+      "paintings":["62220f329b8d0e56d1cea487", "62220f329b8d0e56d1cea488"],
+      "genres": "62220f319b8d0e56d1cea3fd",
+      "name":"Leonardo da Vinci",
+      "description":"Was an Italian polymath of the High Renaissance who was active as a painter, draughtsman, engineer, scientist, theorist, sculptor and architect.",
+      "yearsOfLife":"15 April 1452 – 2 May 1519",
+      "avatar": "62220f319b8d0e56d1cea413",
+      "mainPainting": "62220f329b8d0e56d1cea488"
     }, {
-      "id": 2,
-      "name": "James Whistler",
-      "years_live": "(1900-1930)",
-      "painting": "Arrangement in Grey and Black",
-      "created": "1369",
-      "image": ""
+      "id": "62220f319b8d0e56d1cea409",
+      "paintings":["62220f329b8d0e56d1cea483","62220f329b8d0e56d1cea484","62220f329b8d0e56d1cea485", "62220f329b8d0e56d1cea486"],
+      "genres": "62220f319b8d0e56d1cea3e9",
+      "name":"Rembrandt Harmenszoon van Rijn",
+      "description":"Was a Dutch draughtsman, painter, and printmaker. An innovative and prolific master in three media,[3] he is generally considered one of the greatest visual artists in the history of art and the most important in Dutch art history.",
+      "yearsOfLife":"5 July 1606 – 4 October 1669",
+      "avatar": "62220f319b8d0e56d1cea418",
+      "mainPainting": "62220f329b8d0e56d1cea486"
     }, {
-      "id": 3,
-      "name": "James Whistler",
-      "years_live": "",
-      "painting": "Alice Butt",
-      "created": "",
-      "image": ""
+      "id": "62220f319b8d0e56d1cea40e",
+      "paintings":[ "62220f329b8d0e56d1cea46e","62220f329b8d0e56d1cea476","62220f329b8d0e56d1cea46f"],
+      "genres": "62220f319b8d0e56d1cea3e9",
+      "name":"Peter Paul Rubens",
+      "description":"Was a Flemish artist and diplomat from the Duchy of Brabant in the Southern Netherlands (modern-day Belgium) who lived during the Dutch Golden Age.",
+      "yearsOfLife":"28 June 1577 – 30 May 1640",
+      "avatar": "62220f319b8d0e56d1cea41d",
+      "mainPainting": "62220f329b8d0e56d1cea46f"
     }, {
-      "id": 4,
-      "name": "James Whistler",
-      "years_live": "(1900-1930)",
-      "painting": "Whistler in his Studio",
-      "created": "",
-      "image": ""
+      "id": "62220f319b8d0e56d1cea40c",
+      "paintings":["62220f329b8d0e56d1cea487", "62220f329b8d0e56d1cea488"],
+      "genres": "62220f319b8d0e56d1cea3fd",
+      "name":"Leonardo da Vinci",
+      "description":"Was an Italian polymath of the High Renaissance who was active as a painter, draughtsman, engineer, scientist, theorist, sculptor and architect.",
+      "yearsOfLife":"15 April 1452 – 2 May 1519",
+      "avatar": "62220f319b8d0e56d1cea413",
+      "mainPainting": "62220f329b8d0e56d1cea488"
     }, {
-      "id": 11,
-      "name": "James Whistler",
-      "years_live": "",
-      "painting": "Old Battersea Bridge",
-      "created": "",
-      "image": ""
+      "id": "62220f319b8d0e56d1cea40b",
+      "paintings":["62220f329b8d0e56d1cea483","62220f329b8d0e56d1cea484","62220f329b8d0e56d1cea485", "62220f329b8d0e56d1cea486"],
+      "genres": "62220f319b8d0e56d1cea3e9",
+      "name":"Rembrandt Harmenszoon van Rijn",
+      "description":"Was a Dutch draughtsman, painter, and printmaker. An innovative and prolific master in three media,[3] he is generally considered one of the greatest visual artists in the history of art and the most important in Dutch art history.",
+      "yearsOfLife":"5 July 1606 – 4 October 1669",
+      "avatar": "62220f319b8d0e56d1cea418",
+      "mainPainting": "62220f329b8d0e56d1cea486"
     }, {
-      "id": 21,
-      "name": "James Whistler",
-      "years_live": "",
-      "painting": "Arrangement in Grey and Black",
-      "created": "1458",
-      "image": ""
-    }, {
-      "id": 31,
-      "name": "James Whistler",
-      "years_live": "(1900-1930)",
-      "painting": "Alice Butt",
-      "created": "1275",
-      "image": ""
-    }, {
-      "id": 41,
-      "name": "James Whistler",
-      "years_live": "(1900-1930)",
-      "painting": "Whistler in his Studio",
-      "created": "",
-      "image": ""
+      "id": "62220f319b8d0e56d1cea40a",
+      "paintings":[ "62220f329b8d0e56d1cea46e","62220f329b8d0e56d1cea476","62220f329b8d0e56d1cea46f"],
+      "genres": "62220f319b8d0e56d1cea3e9",
+      "name":"Peter Paul Rubens",
+      "description":"Was a Flemish artist and diplomat from the Duchy of Brabant in the Southern Netherlands (modern-day Belgium) who lived during the Dutch Golden Age.",
+      "yearsOfLife":"28 June 1577 – 30 May 1640",
+      "avatar": "62220f319b8d0e56d1cea41d",
+      "mainPainting": "62220f329b8d0e56d1cea46f"
     },{
-      "id": 12,
-      "name": "James Whistler",
-      "years_live": "",
-      "painting": "Old Battersea Bridge",
-      "created": "",
-      "image": ""
+      "id": "62220f319b8d0e56d1cea411",
+      "paintings":["62220f329b8d0e56d1cea487", "62220f329b8d0e56d1cea488"],
+      "genres": "62220f319b8d0e56d1cea3fd",
+      "name":"Leonardo da Vinci",
+      "description":"Was an Italian polymath of the High Renaissance who was active as a painter, draughtsman, engineer, scientist, theorist, sculptor and architect.",
+      "yearsOfLife":"15 April 1452 – 2 May 1519",
+      "avatar": "62220f319b8d0e56d1cea413",
+      "mainPainting": "62220f329b8d0e56d1cea488"
     }, {
-      "id": 22,
-      "name": "James Whistler",
-      "years_live": "(1900-1930)",
-      "painting": "Arrangement in Grey and Black",
-      "created": "",
-      "image": ""
+      "id": "62220f319b8d0e56d1cea412",
+      "paintings":["62220f329b8d0e56d1cea483","62220f329b8d0e56d1cea484","62220f329b8d0e56d1cea485", "62220f329b8d0e56d1cea486"],
+      "genres": "62220f319b8d0e56d1cea3e9",
+      "name":"Rembrandt Harmenszoon van Rijn",
+      "description":"Was a Dutch draughtsman, painter, and printmaker. An innovative and prolific master in three media,[3] he is generally considered one of the greatest visual artists in the history of art and the most important in Dutch art history.",
+      "yearsOfLife":"5 July 1606 – 4 October 1669",
+      "avatar": "62220f319b8d0e56d1cea418",
+      "mainPainting": "62220f329b8d0e56d1cea486"
     }, {
-      "id": 32,
-      "name": "James Whistler",
-      "years_live": "",
-      "painting": "Alice Butt",
-      "created": "1259",
-      "image": ""
-    }, {
-      "id": 42,
-      "name": "James Whistler",
-      "years_live": "(1900-1930)",
-      "painting": "Whistler in his Studio",
-      "created": "",
-      "image": ""
+      "id": "62220f319b8d0e56d1cea408",
+      "paintings":[ "62220f329b8d0e56d1cea46e","62220f329b8d0e56d1cea476","62220f329b8d0e56d1cea46f"],
+      "genres": "62220f319b8d0e56d1cea3e9",
+      "name":"Peter Paul Rubens",
+      "description":"Was a Flemish artist and diplomat from the Duchy of Brabant in the Southern Netherlands (modern-day Belgium) who lived during the Dutch Golden Age.",
+      "yearsOfLife":"28 June 1577 – 30 May 1640",
+      "avatar": "62220f319b8d0e56d1cea41d",
+      "mainPainting": "62220f329b8d0e56d1cea46f"
+    }
+  ],
+  "genres" : [
+    {
+      "id":"62220f319b8d0e56d1cea3cb",
+      "name":"Realism"
+    },
+    {
+      "id":"62220f319b8d0e56d1cea3df",
+      "name":"Modernism"
+    },
+    {
+      "id":"62220f319b8d0e56d1cea3fd",
+      "name":"Renaissance"
+    },
+    {
+      "id":"62220f319b8d0e56d1cea3e9",
+      "name":"Baroque"
+    }
+  ],
+  "paintings": [
+    {
+      "id": "62220f329b8d0e56d1cea487",
+      "name":"Annunciation",
+      "yearOfCreation":"1472",
+      "image": "62220f349b8d0e56d1cea4eb",
+      "artist": "62220f319b8d0e56d1cea40d"
+    },
+    {
+      "id": "62220f329b8d0e56d1cea488",
+      "name":"The Last Supper",
+      "yearOfCreation":"1490",
+      "image": "62220f349b8d0e56d1cea4eb",
+      "artist": "62220f319b8d0e56d1cea40d"
+    },
+    {
+      "id": "62220f329b8d0e56d1cea483",
+      "name":"The Night Watch",
+      "yearOfCreation":"1642",
+      "image": "62220f349b8d0e56d1cea4eb",
+      "artist": "62220f319b8d0e56d1cea409"
+    },
+    {
+      "id": "62220f329b8d0e56d1cea484",
+      "name":"The Anatomy Lesson of Dr. Nicolaes Tulp",
+      "yearOfCreation":"1613",
+      "image": "62220f349b8d0e56d1cea4eb",
+      "artist": "62220f319b8d0e56d1cea409"
+    },
+    {
+      "id": "62220f329b8d0e56d1cea485",
+      "name":"Syndics of the Drapers' Guild",
+      "yearOfCreation":"1662",
+      "image": "62220f349b8d0e56d1cea4eb",
+      "artist": "62220f319b8d0e56d1cea409"
+    },
+    {
+      "id": "62220f329b8d0e56d1cea486",
+      "name":"The Jewish Bride",
+      "yearOfCreation":"1665",
+      "image": "62220f349b8d0e56d1cea4eb",
+      "artist": "62220f319b8d0e56d1cea409"
+    },
+    {
+      "id": "62220f329b8d0e56d1cea46e",
+      "name":"Pan Reclining",
+      "yearOfCreation":"1610",
+      "image": "62220f349b8d0e56d1cea4eb",
+      "artist": "62220f319b8d0e56d1cea40e"
+    },
+    {
+      "id": "62220f329b8d0e56d1cea476",
+      "name":"Pan and Syrinx",
+      "yearOfCreation":"1617",
+      "image": "62220f349b8d0e56d1cea4eb",
+      "artist": "62220f319b8d0e56d1cea40e"
+    },
+    {
+      "id": "62220f329b8d0e56d1cea46f",
+      "name":"Jupiter and Callisto",
+      "yearOfCreation":"1613",
+      "image": "62220f349b8d0e56d1cea4eb",
+      "artist": "62220f319b8d0e56d1cea40e"
     }
   ]
+  
 }
