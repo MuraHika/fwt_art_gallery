@@ -3,11 +3,10 @@ import "./styles.scss";
 
 interface TagProps {
   theme?: "dark" | "light";
-  text: string;
+  text?: string;
 }
 
 function Tag({ theme, text } : TagProps) {
-
   return (
     <div className={`tag tag--${theme}`}>
       <span>

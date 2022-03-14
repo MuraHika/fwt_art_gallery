@@ -5,7 +5,7 @@ import "./styles.scss";
 
 interface AccordionProps {
   theme?: "dark" | "light";
-  text: string;
+  text?: string;
 }
 
 function Accordion({ theme, text } : AccordionProps) {
@@ -17,16 +17,21 @@ function Accordion({ theme, text } : AccordionProps) {
   const [isHide, setIsHide] = useState<boolean>(true); 
 
   useEffect(() => {
-    if (text.length >= 238) {
-      for (let index = 0; index < text.length; index += 1) {
-        if (index <= 238) {
-          setShowText((prevState) => (prevState + text[index]));
-        } else {
+    if ( text !== undefined) {
+      if (text.length >= 238) {
+        for (let index = 0; index < text.length; index += 1) {
+          if (index <= 238) {
+            setShowText((prevState) => (prevState + text[index]));
+          } else {
 
-          setHideText((prevState) => (prevState + text[index]));
+            setHideText((prevState) => (prevState + text[index]));
+          }
         }
+        console.log(text.length);
+      } else {
+        setShowText(text);
+        setIsHide(false);
       }
-      console.log(text.length);
     }
   }, []);
 
@@ -43,7 +48,7 @@ function Accordion({ theme, text } : AccordionProps) {
     <div className={`accordion-text ${isHide ? "accordion-text--hide" : "accordion-text--show"}`}>
       <p className={`${isHide ? 'show-text' : ''}`}>
         <span className='text'>{showText}</span>
-        {screen.isMobile && 
+        {screen.isMobile && text!.length >= 238 &&
           <span className={`accordion-button_hide ${isHide ? "arrow--hide" : "arrow--show"}`} onClick={() => SetHide()} >
             <Arrow />
           </span> 
@@ -51,7 +56,7 @@ function Accordion({ theme, text } : AccordionProps) {
       </p>
       
     </div>
-    {!screen.isMobile && <div className={`accordion-button_hide ${isHide ? "arrow--hide" : "arrow--show"}`} onClick={() => SetHide()}>
+    {!screen.isMobile  && text!.length >= 238 && <div className={`accordion-button_hide ${isHide ? "arrow--hide" : "arrow--show"}`} onClick={() => SetHide()}>
       <span>{buttonText}</span>
       <Arrow />
     </div>}

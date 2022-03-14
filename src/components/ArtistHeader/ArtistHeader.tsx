@@ -1,38 +1,67 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import "./styles.scss";
 import Tag from '../Tag';
 import Accordion from '../Accordion';
 import ArtistAva from "../../assets/artist_ava.png";
+import { useAppSelector } from "../../hooks/useToolkit";
 
 interface ArtistHeaderProps {
   theme?: "dark" | "light";
+  authorId: string;
 }
 
-function ArtistHeader({ theme } : ArtistHeaderProps) {
+function ArtistHeader({ theme, authorId } : ArtistHeaderProps) {
+  
+  const genres = useAppSelector((state) => state.artists.arr_genres);
+  const artists = useAppSelector((state) => state.artists.arr_artists);
+  // const images = useAppSelector((state) => state.artists.arr_genres);
+  
+  interface TypeArtist {
+    name: string;
+    yearLives: string;
+    description: string;
+    placeBorn: string;
+    genres: string[];
+  }
 
-  const genres = ["anime & manga", "architectural", "maya", "realistic", "Unreal engine", "weapons"];
-  const text = "He studied in the Russian Empire and the United States, but spent most of his active life in England. He is best known for his portraits of his contemporaries. Experienced the influence of realists in the person of his friend Gustave Courbet and the Pre-Raphaelites, as well as Japanese art. In a number of creative methods it was close to impressionism.";
+  const [artist, setArtist] = useState<TypeArtist>({ 
+    name: "",
+    yearLives: "",
+    placeBorn: "",
+    genres: [],
+    description: "",
+  });
+
+  useEffect(() => {
+    const objArt = artists.find(el => el.id === authorId);
+    if (objArt !== undefined){
+      setArtist({
+        name: objArt.name,
+        yearLives: objArt.yearsOfLife,
+        placeBorn: "London",
+        genres: objArt.genres,
+        description: objArt.description,
+      });
+    }
+  }, [artists]);
 
   return (
-  // <div style={{ width: "100%" }}>
-      <div className={`artist-container artist-container--${theme}`}>
-        <div className="artist-profile">
-          <img className='artist_profile-picture' src={`${ArtistAva}`} alt="author"/>
-          {/* <div className='artist_profile-picture' style={{ backgroundImage: `url(${ArtistAva})` }} /> */}
-          <span className='artist_profile-name'>James Whistler</span>
-          <span className='artist_profile-year'>July 11, 1834 - July 17, 1903</span>
-        </div>
-        <div className={`artist-info artist-info--${theme}`}>
-          <Accordion theme={theme} text={text} />
-          <span className='artist_info-place'>London, Great Britain</span>
-          <div className='artist-tags'>
-            {genres.map((el) => (
-              <Tag text={el} key={el}/>
-            ))}
-          </div>
+    <div className={`artist-container artist-container--${theme}`}>
+      <div className="artist-profile">
+        <img className='artist_profile-picture' src={`${ArtistAva}`} alt="author"/>
+        <span className='artist_profile-name'>{artist.name}</span>
+        <span className='artist_profile-year'>{artist.yearLives}</span>
+      </div>
+      <div className={`artist-info artist-info--${theme}`}>
+        {artist.description !== "" && <Accordion theme={theme} text={artist.description} /> }
+        <span className='artist_info-place'>{artist.placeBorn}</span>
+        <div className='artist-tags'>
+          {artist.genres.map((el) => (
+            <Tag text={genres.find(genre => genre.id === el)?.name} key={el}/>
+          ))}
         </div>
       </div>
-  // </div>
+    </div>
   );
 }
 

@@ -4,14 +4,20 @@ import { Routes, Route } from "react-router-dom";
 import Main from "./pages/Main";
 import Artist from "./pages/Artist";
 import { useAppDispatch } from "./hooks/useToolkit";
-import { getArtists, getPaintings, getGenres, setTheme } from "./slices/artistSlice";
+import { getArtists, getPaintings, getGenres, getImages, setTheme, setLoading } from "./slices/artistSlice";
 
 function App() {
   const dispatch = useAppDispatch();
   useEffect(() => {
-    dispatch(getArtists());
-    dispatch(getPaintings());
-    dispatch(getGenres());
+    
+    setTimeout(() => {
+      dispatch(getArtists());
+      dispatch(getPaintings());
+      dispatch(getGenres());
+      dispatch(getImages());
+      dispatch(setLoading(false));
+    }, 1000);
+
     const theme = document.cookie.split('; ').reduce((r, v) => {
       const parts = v.split('=');
       return parts[0] === "theme" ? decodeURIComponent(parts[1]) : r;

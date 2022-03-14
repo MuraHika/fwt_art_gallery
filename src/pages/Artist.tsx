@@ -8,29 +8,23 @@ import { useAppSelector } from "../hooks/useToolkit";
 import "./styles.scss";
 
 function Artist() {
-  // const artists = useAppSelector((state) => state.artists.arr_artists);
   const theme = useAppSelector((state) => state.artists.theme);
   const loading = useAppSelector((state) => state.artists.loading);
+  
+  const paintings = useAppSelector((state) => state.artists.arr_paintings);
+  const images = useAppSelector((state) => state.artists.arr_genres);
 
-  const paints = [
-    { id: 1, name: "Syndics of the Drapers' Guild", yearOfCreation: "1662", image: "" }, 
-    { id: 2, name: "Syndics of the Drapers' Guild", yearOfCreation: "1662", image: ""  }, 
-    { id: 3, name: "Syndics of the Drapers' Guild", yearOfCreation: "1662", image: ""  }, 
-    { id: 4, name: "Syndics of the Drapers' Guild", yearOfCreation: "1662", image: ""  }, 
-    { id: 5, name: "Syndics of the Drapers' Guild", yearOfCreation: "1662", image: ""  }, 
-    { id: 6, name: "Syndics of the Drapers' Guild", yearOfCreation: "1662", image: ""  }, 
-    { id: 7, name: "Syndics of the Drapers' Guild", yearOfCreation: "1662", image: ""  }, 
-    { id: 8, name: "Syndics of the Drapers' Guild", yearOfCreation: "1662", image: ""  }, 
-    { id: 9, name: "Syndics of the Drapers' Guild", yearOfCreation: "1662", image: ""  }];
+  const authorId = "62220f319b8d0e56d1cea409";
+  const paints = paintings.filter(el => el.artist === authorId);
   
   useEffect(() => {
-    console.log("name_paints");
+    console.log("name_paints", paints);
   }, []);
 
   return (
     <div className={`main_page main_page--${theme}`}>
       <Header theme={theme} />
-      <ArtistHeader theme={theme} />
+      {!loading && <ArtistHeader theme={theme} authorId={authorId}/>}
       {loading && <Loader theme={theme}/>}
       {!loading && <div className="grid_layout__painting">
         <GridLayout items={{ type: 'paint', array: paints }} theme={theme}/>

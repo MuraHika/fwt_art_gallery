@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import "./styles.scss";
-import ResizeScreen from "../../utils/ScreenSize";
 import Card from "../Card/index";
 
+import { useAppSelector } from "../../hooks/useToolkit";
 
 type TypeArtists = {
   id: string;
@@ -44,6 +44,8 @@ export default function GridLayout(
 ) {
 
   const arr = identity(items.array);
+  const paintings = useAppSelector((state) => state.artists.arr_paintings);
+  
   useEffect(() => {
     console.log("type type", items);
   }, []);
@@ -56,10 +58,10 @@ export default function GridLayout(
           type={items.type}
           obj={{
             author_name: el.name,
-            picture_name: el.painting,
-            date_created: el.created,
-            src_img: el.image,
-            years_live: el.years_live,
+            picture_name: paintings.find(paint => paint.id === el.mainPainting)!.name,
+            date_created: paintings.find(paint => paint.id === el.mainPainting)!.yearOfCreation,
+            src_img: el.mainPainting,
+            years_live: el.yearsOfLife,
           }}
         />
       ))}

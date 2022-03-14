@@ -3,7 +3,7 @@
     {
       "id": "62220f319b8d0e56d1cea40d",
       "paintings":["62220f329b8d0e56d1cea487", "62220f329b8d0e56d1cea488"],
-      "genres": "62220f319b8d0e56d1cea3fd",
+      "genres": ["62220f319b8d0e56d1cea3fd"],
       "name":"Leonardo da Vinci",
       "description":"Was an Italian polymath of the High Renaissance who was active as a painter, draughtsman, engineer, scientist, theorist, sculptor and architect.",
       "yearsOfLife":"15 April 1452 – 2 May 1519",
@@ -12,7 +12,7 @@
     }, {
       "id": "62220f319b8d0e56d1cea409",
       "paintings":["62220f329b8d0e56d1cea483","62220f329b8d0e56d1cea484","62220f329b8d0e56d1cea485", "62220f329b8d0e56d1cea486"],
-      "genres": "62220f319b8d0e56d1cea3e9",
+      "genres": ["62220f319b8d0e56d1cea3e9"],
       "name":"Rembrandt Harmenszoon van Rijn",
       "description":"Was a Dutch draughtsman, painter, and printmaker. An innovative and prolific master in three media,[3] he is generally considered one of the greatest visual artists in the history of art and the most important in Dutch art history.",
       "yearsOfLife":"5 July 1606 – 4 October 1669",
@@ -21,7 +21,7 @@
     }, {
       "id": "62220f319b8d0e56d1cea40e",
       "paintings":[ "62220f329b8d0e56d1cea46e","62220f329b8d0e56d1cea476","62220f329b8d0e56d1cea46f"],
-      "genres": "62220f319b8d0e56d1cea3e9",
+      "genres": ["62220f319b8d0e56d1cea3e9"],
       "name":"Peter Paul Rubens",
       "description":"Was a Flemish artist and diplomat from the Duchy of Brabant in the Southern Netherlands (modern-day Belgium) who lived during the Dutch Golden Age.",
       "yearsOfLife":"28 June 1577 – 30 May 1640",
@@ -30,7 +30,7 @@
     }, {
       "id": "62220f319b8d0e56d1cea40c",
       "paintings":["62220f329b8d0e56d1cea487", "62220f329b8d0e56d1cea488"],
-      "genres": "62220f319b8d0e56d1cea3fd",
+      "genres": ["62220f319b8d0e56d1cea3fd"],
       "name":"Leonardo da Vinci",
       "description":"Was an Italian polymath of the High Renaissance who was active as a painter, draughtsman, engineer, scientist, theorist, sculptor and architect.",
       "yearsOfLife":"15 April 1452 – 2 May 1519",
@@ -39,7 +39,7 @@
     }, {
       "id": "62220f319b8d0e56d1cea40b",
       "paintings":["62220f329b8d0e56d1cea483","62220f329b8d0e56d1cea484","62220f329b8d0e56d1cea485", "62220f329b8d0e56d1cea486"],
-      "genres": "62220f319b8d0e56d1cea3e9",
+      "genres": ["62220f319b8d0e56d1cea3e9"],
       "name":"Rembrandt Harmenszoon van Rijn",
       "description":"Was a Dutch draughtsman, painter, and printmaker. An innovative and prolific master in three media,[3] he is generally considered one of the greatest visual artists in the history of art and the most important in Dutch art history.",
       "yearsOfLife":"5 July 1606 – 4 October 1669",
@@ -48,7 +48,7 @@
     }, {
       "id": "62220f319b8d0e56d1cea40a",
       "paintings":[ "62220f329b8d0e56d1cea46e","62220f329b8d0e56d1cea476","62220f329b8d0e56d1cea46f"],
-      "genres": "62220f319b8d0e56d1cea3e9",
+      "genres": ["62220f319b8d0e56d1cea3e9"],
       "name":"Peter Paul Rubens",
       "description":"Was a Flemish artist and diplomat from the Duchy of Brabant in the Southern Netherlands (modern-day Belgium) who lived during the Dutch Golden Age.",
       "yearsOfLife":"28 June 1577 – 30 May 1640",
@@ -57,7 +57,7 @@
     },{
       "id": "62220f319b8d0e56d1cea411",
       "paintings":["62220f329b8d0e56d1cea487", "62220f329b8d0e56d1cea488"],
-      "genres": "62220f319b8d0e56d1cea3fd",
+      "genres": ["62220f319b8d0e56d1cea3fd"],
       "name":"Leonardo da Vinci",
       "description":"Was an Italian polymath of the High Renaissance who was active as a painter, draughtsman, engineer, scientist, theorist, sculptor and architect.",
       "yearsOfLife":"15 April 1452 – 2 May 1519",
@@ -66,7 +66,7 @@
     }, {
       "id": "62220f319b8d0e56d1cea412",
       "paintings":["62220f329b8d0e56d1cea483","62220f329b8d0e56d1cea484","62220f329b8d0e56d1cea485", "62220f329b8d0e56d1cea486"],
-      "genres": "62220f319b8d0e56d1cea3e9",
+      "genres": ["62220f319b8d0e56d1cea3e9"],
       "name":"Rembrandt Harmenszoon van Rijn",
       "description":"Was a Dutch draughtsman, painter, and printmaker. An innovative and prolific master in three media,[3] he is generally considered one of the greatest visual artists in the history of art and the most important in Dutch art history.",
       "yearsOfLife":"5 July 1606 – 4 October 1669",
@@ -75,7 +75,7 @@
     }, {
       "id": "62220f319b8d0e56d1cea408",
       "paintings":[ "62220f329b8d0e56d1cea46e","62220f329b8d0e56d1cea476","62220f329b8d0e56d1cea46f"],
-      "genres": "62220f319b8d0e56d1cea3e9",
+      "genres": ["62220f319b8d0e56d1cea3e9"],
       "name":"Peter Paul Rubens",
       "description":"Was a Flemish artist and diplomat from the Duchy of Brabant in the Southern Netherlands (modern-day Belgium) who lived during the Dutch Golden Age.",
       "yearsOfLife":"28 June 1577 – 30 May 1640",
@@ -165,6 +165,39 @@
       "image": "62220f349b8d0e56d1cea4eb",
       "artist": "62220f319b8d0e56d1cea40e"
     }
+  ],
+  "images": [
+    {
+      "id": "62220f319b8d0e56d1cea413",
+      "src": "/images/62220f319b8d0e56d1cea40d/image.jpg",
+      "webp": "/images/62220f319b8d0e56d1cea40d/image.webp",
+      "src2x": "/images/62220f319b8d0e56d1cea40d/image2x.jpg",
+      "webp2x": "/images/62220f319b8d0e56d1cea40d/image2x.webp",
+      "original": "/images/62220f319b8d0e56d1cea40d/original.jpg"
+    },
+    {
+      "id": "62220f319b8d0e56d1cea418",
+      "src": "/images/62220f319b8d0e56d1cea409/image.jpg",
+      "webp": "/images/62220f319b8d0e56d1cea409/image.webp",
+      "src2x": "/images/62220f319b8d0e56d1cea409/image2x.jpg",
+      "webp2x": "/images/62220f319b8d0e56d1cea409/image2x.webp",
+      "original": "/images/62220f319b8d0e56d1cea409/original.jpg"
+    },
+    {
+      "id": "62220f319b8d0e56d1cea41d",
+      "src": "/images/62220f319b8d0e56d1cea40e/image.jpg",
+      "webp": "/images/62220f319b8d0e56d1cea40e/image.webp",
+      "src2x": "/images/62220f319b8d0e56d1cea40e/image2x.jpg",
+      "webp2x": "/images/62220f319b8d0e56d1cea40e/image2x.webp",
+      "original": "/images/62220f319b8d0e56d1cea40e/original.jpg"
+    },
+    {
+      "id": "62220f349b8d0e56d1cea4eb",
+      "src": "/images/62220f329b8d0e56d1cea487/image.jpg",
+      "webp": "/images/62220f329b8d0e56d1cea487/image.webp",
+      "src2x": "/images/62220f329b8d0e56d1cea487/image2x.jpg",
+      "webp2x": "/images/62220f329b8d0e56d1cea487/image2x.webp",
+      "original": "/images/62220f329b8d0e56d1cea487/original.jpg"
+    }
   ]
-  
 }

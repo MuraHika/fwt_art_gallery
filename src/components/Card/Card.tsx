@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import "./styles.scss";
 import ResizeScreen from "../../utils/ScreenSize";
 import NoImage from "../../assets/no_image.png";
+import Dali from "../../assets/dali_picture.png";
 
 type TypePaint = {
   name: string;
@@ -10,10 +11,10 @@ type TypePaint = {
 };
 
 type TypeArtist = {
-  author_name: string;
-  years_live?: string;
   picture_name: string;
+  author_name: string;
   date_created?: string;
+  years_live?: string;
   src_img?: string;
 };
 
@@ -34,7 +35,7 @@ export default function Card({
   const screen = ResizeScreen();
   const ob = identity(obj);
 
-  const urlImage = ob.src_img === "" ? NoImage : ob.src_img;
+  const urlImage = ob.src_img === "" ? Dali : ob.src_img;
   const onTapFooter = () => {
     if (screen.isTabltet) {
       setisTabletScreen(!isTabletScreen);
@@ -43,7 +44,7 @@ export default function Card({
 
   return (
     <div className={`container-card ${type === "paint" ? "container-card__paint" : ""}`} 
-      style={{ backgroundImage: `url(${urlImage})` }}
+      style={{ backgroundImage: `url(${Dali})` }}
     >
       {type === 'artist' && <div className={`container-card__footer ${isTabletScreen ? "container-card__footer--hover" : ""}`} onClick={onTapFooter}>
          

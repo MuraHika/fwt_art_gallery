@@ -7,10 +7,7 @@ import { useAppSelector } from "../hooks/useToolkit";
 import "./styles.scss";
 
 function Main() {
-  const artists = useAppSelector((state) => state.artists.arr_artists);
-  const paintings = useAppSelector((state) => state.artists.arr_paintings);
-  const genres = useAppSelector((state) => state.artists.arr_genres);
-  
+  const artists = useAppSelector((state) => state.artists.arr_artists);  
   const theme = useAppSelector((state) => state.artists.theme);
   const loading = useAppSelector((state) => state.artists.loading);
 
