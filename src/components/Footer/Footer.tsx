@@ -31,11 +31,11 @@ function Footer({ theme } : FooterProps) {
             </a>
           </div>
         </div>
-          <div className='footer-row'>
-            <p className={`footer-p--${theme}`}>
-              Сажникова Ольга, 2022
-            </p>
-          </div>
+        <div className='footer-row'>
+          <p className={`footer-p--${theme}`}>
+            Сажникова Ольга, 2022
+          </p>
+        </div>
       </div>
     </div>
   );

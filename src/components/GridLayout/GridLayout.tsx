@@ -52,7 +52,7 @@ export default function GridLayout(
 
   return (
     <div className={`grid grid--${theme}`}>
-      {items.type === 'artist' && arr.map((el: TypeArtists) => (
+      {items.type === 'artist' && paintings.length !== 0 && arr.map((el: TypeArtists) => (
         <Card 
           key={el.id}
           type={items.type}

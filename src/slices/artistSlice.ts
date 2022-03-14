@@ -64,13 +64,13 @@ export const getArtists = createAsyncThunk(
   "artists/getArtists",
   async (_, { rejectWithValue }) => {
     try {
-      const response = await axios.get(`http://localhost:3002/artists/`, {
-        method: 'GET',
+      const response = await axios.get(`http://localhost:3000/artists`, {
+        // method: 'GET',
         // mode: 'no-cors',
         headers: {
-          'Access-Control-Allow-Origin': '*',
-          'Access-Control-Allow-Headers': '*',
-          'Content-Type': 'application/json;charset=UTF-8',
+        //   'Access-Control-Allow-Origin': '*',
+        //   'Access-Control-Allow-Headers': '*',
+        //   'Content-Type': 'application/json;charset=UTF-8',
         },
         withCredentials: true,
         // credentials: 'same-origin',
@@ -87,7 +87,7 @@ export const getPaintings = createAsyncThunk(
   "artists/getPaintings",
   async (_, { rejectWithValue }) => {
     try {
-      const response = await axios.get(`http://localhost:3002/paintings/`);
+      const response = await axios.get(`http://localhost:3000/paintings/`);
       console.log(response.data);
       return response.data;
     } catch (error) {
@@ -100,7 +100,7 @@ export const getGenres = createAsyncThunk(
   "artists/getGenres",
   async (_, { rejectWithValue }) => {
     try {
-      const response = await axios.get(`http://localhost:3002/genres/`);
+      const response = await axios.get(`http://localhost:3000/genres/`);
       console.log(response.data);
       return response.data;
     } catch (error) {
@@ -113,7 +113,7 @@ export const getImages = createAsyncThunk(
   "artists/getImages",
   async (_, { rejectWithValue }) => {
     try {
-      const response = await axios.get(`http://localhost:3002/images/`);
+      const response = await axios.get(`http://localhost:3000/images/`);
       console.log(response.data);
       return response.data;
     } catch (error) {

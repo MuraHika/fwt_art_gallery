@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import "./styles.scss";
 import ResizeScreen from "../../utils/ScreenSize";
-import NoImage from "../../assets/no_image.png";
-import Dali from "../../assets/dali_picture.png";
+
+import NoImage from "../../assets/no_image.webp";
+import Dali from "../../assets/dali_picture.webp";
 
 type TypePaint = {
   name: string;
@@ -41,6 +42,13 @@ export default function Card({
       setisTabletScreen(!isTabletScreen);
     }
   };
+
+ 
+
+
+  useEffect(() => {
+    // console.log("type type", files);
+  }, []);
 
   return (
     <div className={`container-card ${type === "paint" ? "container-card__paint" : ""}`} 

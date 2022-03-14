@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import "./styles.scss";
 import Tag from '../Tag';
 import Accordion from '../Accordion';
-import ArtistAva from "../../assets/artist_ava.png";
+import ArtistAva from "../../assets/artist_ava.webp";
 import { useAppSelector } from "../../hooks/useToolkit";
 
 interface ArtistHeaderProps {

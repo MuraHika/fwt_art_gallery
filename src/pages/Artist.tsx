@@ -12,7 +12,7 @@ function Artist() {
   const loading = useAppSelector((state) => state.artists.loading);
   
   const paintings = useAppSelector((state) => state.artists.arr_paintings);
-  const images = useAppSelector((state) => state.artists.arr_genres);
+  const images = useAppSelector((state) => state.artists.arr_images);
 
   const authorId = "62220f319b8d0e56d1cea409";
   const paints = paintings.filter(el => el.artist === authorId);
@@ -26,7 +26,7 @@ function Artist() {
       <Header theme={theme} />
       {!loading && <ArtistHeader theme={theme} authorId={authorId}/>}
       {loading && <Loader theme={theme}/>}
-      {!loading && <div className="grid_layout__painting">
+      {!loading && paintings.length !== 0 && <div className="grid_layout__painting">
         <GridLayout items={{ type: 'paint', array: paints }} theme={theme}/>
       </div>
       }

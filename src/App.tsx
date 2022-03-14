@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { Helmet } from "react-helmet";
+import { batch } from 'react-redux';
 import { Routes, Route } from "react-router-dom";
 import Main from "./pages/Main";
 import Artist from "./pages/Artist";
@@ -8,15 +9,17 @@ import { getArtists, getPaintings, getGenres, getImages, setTheme, setLoading } 
 
 function App() {
   const dispatch = useAppDispatch();
+
   useEffect(() => {
-    
-    setTimeout(() => {
-      dispatch(getArtists());
-      dispatch(getPaintings());
-      dispatch(getGenres());
-      dispatch(getImages());
-      dispatch(setLoading(false));
-    }, 1000);
+    batch(() => {
+      setTimeout(() => {
+        dispatch(getArtists());
+        dispatch(getPaintings());
+        dispatch(getGenres());
+        dispatch(getImages());
+        dispatch(setLoading(false));
+      }, 1000);
+    });
 
     const theme = document.cookie.split('; ').reduce((r, v) => {
       const parts = v.split('=');
