@@ -11,6 +11,7 @@ module.exports = {
     app: "./src/index.tsx",
   },
   target: 'web',
+  devtool: 'cheap-module-source-map',
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.css', '.scss'],
   },
@@ -46,7 +47,7 @@ module.exports = {
       },
     ],
   },
-  mode: "development",
+  mode: "production",
   devServer: {
     historyApiFallback: true,
     hot: true,

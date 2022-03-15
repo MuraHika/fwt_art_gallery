@@ -1,22 +1,22 @@
-import React, { useEffect } from "react";
+import React, { useEffect, Suspense } from "react";
 import { Helmet } from "react-helmet";
 import { batch } from 'react-redux';
 import { Routes, Route } from "react-router-dom";
-import Main from "./pages/Main";
-import Artist from "./pages/Artist";
 import { useAppDispatch } from "./hooks/useToolkit";
-import { getArtists, getPaintings, getGenres, getImages, setTheme, setLoading } from "./slices/artistSlice";
+import { getArtists, getGenres, setTheme, setLoading, getAuthToken } from "./slices/artistSlice";
 
 function App() {
+  const MainPage = React.lazy(() => import("./pages/Main"));
+  const ArtistPage = React.lazy(() => import("./pages/Artist"));
+
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     batch(() => {
-      setTimeout(() => {
+      setTimeout(async () => {
+        await getToken();
         dispatch(getArtists());
-        dispatch(getPaintings());
         dispatch(getGenres());
-        dispatch(getImages());
         dispatch(setLoading(false));
       }, 1000);
     });
@@ -28,17 +28,23 @@ function App() {
     dispatch(setTheme( theme === "light" ? "light" : "dark"));
     console.log("cookie", theme);
   }, []);
-  
+
+  const getToken = async () => {
+    await dispatch(getAuthToken());
+  };
+
   return (
     <div>
       <Helmet>
         <title>FWT | Art Gallery</title>
         <meta name="FWT" content="FWT Art Gallery" />
       </Helmet>
-      <Routes>
-        <Route path="/" element={<Main />} />
-        <Route path="artist/" element={<Artist />} />
-      </Routes>
+        <Suspense fallback={<div>Loading...</div>}>
+          <Routes>
+            <Route path="/" element={<MainPage />} />
+            <Route path="artist/" element={<ArtistPage />} />
+          </Routes>
+        </Suspense>
     </div>
   );
 }

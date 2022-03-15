@@ -30,11 +30,11 @@ div > .container-card {
   }
 
   @include _320 {
-    height: calc(120px + (123 - 120) * ((100vw - 320px) / (500 - 320))) ;
-    max-height: 123px;
+    height: calc(120px + (192 - 120) * ((100vw - 320px) / (500 - 320))) ;
+    max-height: 192px;
     min-height: 120px;
-    width: calc(137px + (140 - 137) * ((100vw - 320px) / (500 - 320))) ;
-    max-width: 140px;
+    width: calc(137px + (220 - 137) * ((100vw - 320px) / (500 - 320))) ;
+    max-width: 220px;
     min-width: 137px;
   }
 }

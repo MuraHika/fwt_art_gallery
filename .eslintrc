@@ -44,7 +44,8 @@
       "jsx-a11y/anchor-is-valid": "off",
       "object-shorthand": "off",
       "consistent-return": "off",
-      "@typescript-eslint/no-unused-expressions": "off"
+      "@typescript-eslint/no-unused-expressions": "off",
+      "no-underscore-dangle": "off"
     },
     "settings": {
       "import/resolver": {

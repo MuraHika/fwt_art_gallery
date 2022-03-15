@@ -43,7 +43,7 @@
         margin-top: calc(115px + (190 - 115) * ((100vw - 501px) / (768 - 501))) ;
      }
      @include _320 {
-        margin-top: calc(120px + (123 - 120) * ((100vw - 320px) / (500 - 320))) ;
+        margin-top: calc(120px + (192 - 120) * ((100vw - 320px) / (500 - 320))) ;
      }
 }
 
@@ -103,15 +103,6 @@ h1 {
         font-size: $size_font__12;
     }
 }
-
-// h1:after {
-//     @include _768 {
-//         content: "...";
-//     }
-//     @include _320 {
-//         content: "...";
-//     }
-// }
 
 .container-card__footer h2 {
     font-size: $size_font__14;

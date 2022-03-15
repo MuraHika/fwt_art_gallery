@@ -10,24 +10,20 @@ import "./styles.scss";
 function Artist() {
   const theme = useAppSelector((state) => state.artists.theme);
   const loading = useAppSelector((state) => state.artists.loading);
-  
-  const paintings = useAppSelector((state) => state.artists.arr_paintings);
-  const images = useAppSelector((state) => state.artists.arr_images);
 
-  const authorId = "62220f319b8d0e56d1cea409";
-  const paints = paintings.filter(el => el.artist === authorId);
+  const artist = useAppSelector((state) => state.artists.arr_artists)[2];
   
   useEffect(() => {
-    console.log("name_paints", paints);
+    console.log("name_paints", artist);
   }, []);
 
   return (
     <div className={`main_page main_page--${theme}`}>
       <Header theme={theme} />
-      {!loading && <ArtistHeader theme={theme} authorId={authorId}/>}
+      {!loading && artist !== undefined && <ArtistHeader theme={theme} artist={artist}/>}
       {loading && <Loader theme={theme}/>}
-      {!loading && paintings.length !== 0 && <div className="grid_layout__painting">
-        <GridLayout items={{ type: 'paint', array: paints }} theme={theme}/>
+      {!loading && artist !== undefined && <div className="grid_layout__painting">
+        <GridLayout items={{ type: 'artist', array: artist }} theme={theme}/>
       </div>
       }
       <Footer theme={theme} />

@@ -20,13 +20,13 @@ function Footer({ theme } : FooterProps) {
             <span className={`footer-title__span--${theme}`}>для Frontend-разработчиков от компании <Link text='Framework Team' url='https://framework.team/' theme={theme}/></span>  
           </div>
           <div className={`icons icons--${theme}`}>
-            <a href="https://www.facebook.com/framework.team">
+            <a href="https://www.facebook.com/framework.team" aria-label='Facebook'> 
               <Facebook />
             </a>
-            <a href="https://vk.com/frameworkteam">
+            <a href="https://vk.com/frameworkteam"  aria-label='Vkontakte'>
               <VK />
             </a>
-            <a className="insta_logo" href="https://www.instagram.com/framework.team/">
+            <a className="insta_logo" href="https://www.instagram.com/framework.team/" aria-label='Instagram'>
               <Insta />
             </a>
           </div>

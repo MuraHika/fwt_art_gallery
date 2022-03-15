@@ -1,49 +1,17 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-// import { WritableDraft } from "immer/dist/types/types-external";
 import axios from 'axios';
-import * as  data from "../../db.json";
+import { TypeArtists, TypeGenres, TypePaintings } from "../utils/Types";
 
-interface TypeArtists {
-  id: string;
-  paintings: string[];
-  genres: string[];
-  name: string;
-  description:string;
-  yearsOfLife: string;
-  avatar: string;
-  mainPainting: string;
-}
-
-interface TypePaintings {
-  id: string;
-  name: string;
-  yearOfCreation: string;
-  image: string;
-  artist: string;
-}
-
-interface TypeGenres {
-  id: string;
-  name: string;
-}
-
-interface TypeImages {
-  id: string;
-  src: string;
-  webp: string;
-  src2x: string;
-  webp2x: string;
-  original: string;
-}
+const { LOCAL_HOST } = process.env;
 
 type SliceState = {
   arr_artists: TypeArtists[],
   arr_genres: TypeGenres[],
   arr_paintings: TypePaintings[],
-  arr_images: TypeImages[],
   theme: "light" | "dark",
   loading: boolean,
   isLogin: boolean,
+  authToken: string,
   status: null | string,
   error: null | string,
 };
@@ -52,44 +20,67 @@ const initialState : SliceState = {
   arr_artists: [],
   arr_genres: [],
   arr_paintings: [],
-  arr_images: [],
   theme: "light",
   loading: true,
   isLogin: false,
+  authToken: "",
   status: null,
   error: null,
 };
 
-export const getArtists = createAsyncThunk(
-  "artists/getArtists",
+const header = () => {
+
+  const authToken = document.cookie.split('; ').reduce((r, v) => {
+    const parts = v.split('=');
+    return parts[0] === "token" ? decodeURIComponent(parts[1]) : r;
+  }, '');
+  console.log("token", authToken);
+  return ({
+    headers: {
+      'Authorization': `Bearer ${authToken}`,
+    },
+    withCredentials: true,
+  });
+};
+
+export const getAuthToken = createAsyncThunk(
+  "artists/getAuthToken",
   async (_, { rejectWithValue }) => {
     try {
-      const response = await axios.get(`http://localhost:3000/artists`, {
-        // method: 'GET',
-        // mode: 'no-cors',
-        headers: {
-        //   'Access-Control-Allow-Origin': '*',
-        //   'Access-Control-Allow-Headers': '*',
-        //   'Content-Type': 'application/json;charset=UTF-8',
-        },
-        withCredentials: true,
-        // credentials: 'same-origin',
+      const response = await axios.post(`${LOCAL_HOST}auth/login`, {
+        username: "demoUser",
+        password: "111",
       });
-      console.log(response.data);
-      return response.data;
+
+      document.cookie = `token=${response.data.accessToken}`;
+      console.log(response.data.accessToken);
+      return response.data.accessToken;
     } catch (error) {
       return rejectWithValue((error as Error).message);
     }
   },
 );
 
-export const getPaintings = createAsyncThunk(
-  "artists/getPaintings",
-  async (_, { rejectWithValue }) => {
+export const getArtists = createAsyncThunk(
+  "artists/getArtists",
+  async (_, { rejectWithValue, getState }) => {
     try {
-      const response = await axios.get(`http://localhost:3000/paintings/`);
+      const response = await axios.get(`${LOCAL_HOST}artists/`, header());
       console.log(response.data);
-      return response.data;
+      return response.data.data;
+    } catch (error) {
+      return rejectWithValue((error as Error).message);
+    }
+  },
+);
+
+export const getPaintingsOfArtist = createAsyncThunk(
+  "artists/getPaintingsOfArtist",
+  async ( id: string, { rejectWithValue }) => {
+    try {
+      const response = await axios.get(`${LOCAL_HOST}artists/${id}`, header());
+      console.log(response.data.paintings);
+      return response.data.paintings;
     } catch (error) {
       return rejectWithValue((error as Error).message);
     }
@@ -100,20 +91,7 @@ export const getGenres = createAsyncThunk(
   "artists/getGenres",
   async (_, { rejectWithValue }) => {
     try {
-      const response = await axios.get(`http://localhost:3000/genres/`);
-      console.log(response.data);
-      return response.data;
-    } catch (error) {
-      return rejectWithValue((error as Error).message);
-    }
-  },
-);
-
-export const getImages = createAsyncThunk(
-  "artists/getImages",
-  async (_, { rejectWithValue }) => {
-    try {
-      const response = await axios.get(`http://localhost:3000/images/`);
+      const response = await axios.get(`${LOCAL_HOST}genres/`, header());
       console.log(response.data);
       return response.data;
     } catch (error) {
@@ -164,14 +142,6 @@ const artistSlice = createSlice({
       state.status = "resolved";
       state.arr_artists = action.payload;
     });
-    builder.addCase(getPaintings.pending, (state) => {
-      state.status = "loading";
-      state.error = null;
-    });
-    builder.addCase(getPaintings.fulfilled, (state, action) => {
-      state.status = "resolved";
-      state.arr_paintings = action.payload;
-    });
     builder.addCase(getGenres.pending, (state) => {
       state.status = "loading";
       state.error = null;
@@ -180,20 +150,22 @@ const artistSlice = createSlice({
       state.status = "resolved";
       state.arr_genres = action.payload;
     });
-    builder.addCase(getImages.pending, (state) => {
+    builder.addCase(getPaintingsOfArtist.pending, (state) => {
       state.status = "loading";
       state.error = null;
     });
-    builder.addCase(getImages.fulfilled, (state, action) => {
+    builder.addCase(getPaintingsOfArtist.fulfilled, (state, action) => {
       state.status = "resolved";
-      state.arr_images = action.payload;
-      state.loading = false;
+      state.arr_paintings = action.payload;
+    });
+    builder.addCase(getAuthToken.fulfilled, (state, action) => {
+      state.status = "resolved";
+      state.authToken = action.payload;
     });
 
     builder.addCase(getArtists.rejected, setError);
-    builder.addCase(getPaintings.rejected, setError);
     builder.addCase(getGenres.rejected, setError);
-    builder.addCase(getImages.rejected, setError);
+    builder.addCase(getPaintingsOfArtist.rejected, setError);
   },
 });
 

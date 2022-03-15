@@ -1,30 +1,14 @@
 import React, { useEffect } from 'react';
 import "./styles.scss";
 import Card from "../Card/index";
-
-import { useAppSelector } from "../../hooks/useToolkit";
-
-type TypeArtists = {
-  id: string;
-  paintings: string[];
-  genres: string[];
-  name: string;
-  description:string;
-  yearsOfLife?: string;
-  avatar: string;
-  mainPainting: string;
-};
-
-interface TypePaint {
-  id: string | number;
-  name: string;
-  yearOfCreation: string;
-  image?: string;
-}
+import { TypeArtists, TypePaintings } from "../../utils/Types";
+import { useAppDispatch, useAppSelector } from "../../hooks/useToolkit";
+import { getPaintingsOfArtist } from "../../slices/artistSlice";
+import ResizeScreen from "../../utils/ScreenSize";
 
 type CardArt = {
   type: 'artist' | 'paint';
-  array: TypeArtists[] | TypePaint[];
+  array: TypeArtists | TypeArtists[];
 };
 
 interface GridLayoutProps {
@@ -43,35 +27,40 @@ export default function GridLayout(
   } : GridLayoutProps,
 ) {
 
+  const dispatch = useAppDispatch();
+  const screen = ResizeScreen();
   const arr = identity(items.array);
   const paintings = useAppSelector((state) => state.artists.arr_paintings);
   
   useEffect(() => {
-    console.log("type type", items);
+    if (items.type === 'artist') {
+      dispatch(getPaintingsOfArtist(arr._id));
+      console.log("type type", paintings);
+    }
   }, []);
 
   return (
     <div className={`grid grid--${theme}`}>
-      {items.type === 'artist' && paintings.length !== 0 && arr.map((el: TypeArtists) => (
+      {items.type === 'paint' && arr.length !== 0 && arr.map((el: TypeArtists) => (
         <Card 
-          key={el.id}
+          key={el._id}
           type={items.type}
           obj={{
             author_name: el.name,
-            picture_name: paintings.find(paint => paint.id === el.mainPainting)!.name,
-            date_created: paintings.find(paint => paint.id === el.mainPainting)!.yearOfCreation,
-            src_img: el.mainPainting,
+            picture_name: el.mainPainting.name,
+            date_created: el.mainPainting.yearOfCreation,
+            src_img: screen.isDesktop ? el.mainPainting.image.webp2x : el.mainPainting.image.webp,
             years_live: el.yearsOfLife,
           }}
         />
       ))}
 
-      {items.type === 'paint' && arr.map((el: TypePaint) => (
+      {items.type === 'artist' && paintings.length !== 0 && paintings.map((el: TypePaintings) => (
         <Card 
-          key={el.id} 
+          key={el._id} 
           type={items.type}
           obj={{
-            src_img: el.image,
+            src_img: screen.isDesktop ? el.image.webp2x : el.image.webp,
             name: el.name,
             yearOfCreation: el.yearOfCreation,
           }}

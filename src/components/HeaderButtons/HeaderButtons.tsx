@@ -41,7 +41,7 @@ function HeaderButtons({ theme, classesBurger, setClassToBurger } : HeaderButton
   return (
     <div className={classesBurger}>
       {screen.isMobile && <div onClick={() => setClassToBurger("header-buttons--mobile")} className="close_button"><Close /></div>}
-      <Button className='header-button' text={<Theme />} isPrimary={false} theme={theme} size="medium" paddings="12px" onClick={() => setNewTheme()}/>
+      <Button className='header-button' aria-label='theme' text={<Theme />} isPrimary={false} theme={theme} size="medium" paddings="12px" onClick={() => setNewTheme()}/>
       {!isLogin && <Button text='LOG IN' isPrimary={false} theme={theme} size="large" paddings="12px 16px" onClick={() => onNavigateTo()} />}
       {!isLogin && <Button text='SIGN UP' isPrimary={true} theme={theme} size="large" paddings="12px 16px"/>}
       {isLogin && <Button text="LOG OUT" isPrimary={false} theme={theme} size="large" paddings='12px 16px' onClick={() => onNavigateTo()} /> }
