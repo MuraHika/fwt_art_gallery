@@ -47,7 +47,7 @@ export const getAuthToken = createAsyncThunk(
   "artists/getAuthToken",
   async (_, { rejectWithValue }) => {
     try {
-      const response = await axios.post(`${LOCAL_HOST}auth/login`, {
+      const response = await axios.post(`${LOCAL_HOST}/auth/login`, {
         username: "demoUser",
         password: "111",
       });
@@ -63,9 +63,9 @@ export const getAuthToken = createAsyncThunk(
 
 export const getArtists = createAsyncThunk(
   "artists/getArtists",
-  async (_, { rejectWithValue, getState }) => {
+  async (_, { rejectWithValue }) => {
     try {
-      const response = await axios.get(`${LOCAL_HOST}artists/`, header());
+      const response = await axios.get(`${LOCAL_HOST}/artists/`, header());
       console.log(response.data);
       return response.data.data;
     } catch (error) {
@@ -78,7 +78,7 @@ export const getPaintingsOfArtist = createAsyncThunk(
   "artists/getPaintingsOfArtist",
   async ( id: string, { rejectWithValue }) => {
     try {
-      const response = await axios.get(`${LOCAL_HOST}artists/${id}`, header());
+      const response = await axios.get(`${LOCAL_HOST}/artists/${id}`, header());
       console.log(response.data.paintings);
       return response.data.paintings;
     } catch (error) {
@@ -91,7 +91,7 @@ export const getGenres = createAsyncThunk(
   "artists/getGenres",
   async (_, { rejectWithValue }) => {
     try {
-      const response = await axios.get(`${LOCAL_HOST}genres/`, header());
+      const response = await axios.get(`${LOCAL_HOST}/genres/`, header());
       console.log(response.data);
       return response.data;
     } catch (error) {
