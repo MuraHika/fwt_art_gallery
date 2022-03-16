@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import "./styles.scss";
 import ResizeScreen from "../../utils/ScreenSize";
 
 import NoImage from "../../assets/no_image.webp";
 
-const { LOCAL_HOST } = process.env;
+// const { LOCAL_HOST } = process.env;
 type TypePaint = {
   name: string;
   yearOfCreation?: string;
@@ -22,16 +22,13 @@ type TypeArtist = {
 interface CardProps {
   type: 'artist' | 'paint';
   obj: TypePaint | TypeArtist;
+  onClick?: React.MouseEventHandler<HTMLDivElement>;
 }
 
 function identity(arg: any): any {
   return arg;
 }
-
-export default function Card({ 
-  type,
-  obj } : CardProps,
-) {
+const Card: FC<CardProps> = ({ type,  obj, onClick } : CardProps) => {
   const [isTabletScreen, setisTabletScreen] = useState(false);
   const screen = ResizeScreen();
   const ob = identity(obj);
@@ -43,16 +40,15 @@ export default function Card({
     }
   };
 
- 
-
-
+  
   useEffect(() => {
-    // console.log("type type", files);
+    console.log("type type", urlImage);
   }, []);
 
   return (
     <div className={`container-card ${type === "artist" ? "container-card__paint" : ""}`} 
-      style={{ backgroundImage: `url(${LOCAL_HOST}${urlImage})` }}
+      style={{ backgroundImage: `url(${NoImage})` }}
+      onClick={onClick}
     >
       {type === 'paint' && <div className={`container-card__footer ${isTabletScreen ? "container-card__footer--hover" : ""}`} onClick={onTapFooter}>
          
@@ -77,4 +73,6 @@ export default function Card({
       {type === 'artist' && <div className='container-card-artist__footer'><h1>{`${ob.name  }, ${  ob.yearOfCreation}`}</h1></div>}
     </div>
   );
-}
+};
+
+export default Card;

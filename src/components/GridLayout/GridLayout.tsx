@@ -14,6 +14,7 @@ type CardArt = {
 interface GridLayoutProps {
   items: CardArt,
   theme: string,
+  setSlider: () => void,
 }
 
 function identity(arg: any): any {
@@ -24,6 +25,7 @@ export default function GridLayout(
   {
     items,
     theme,
+    setSlider,
   } : GridLayoutProps,
 ) {
 
@@ -64,6 +66,7 @@ export default function GridLayout(
             name: el.name,
             yearOfCreation: el.yearOfCreation,
           }}
+          onClick={setSlider}
         />
       ))}
     </div>
