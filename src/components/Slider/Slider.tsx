@@ -1,4 +1,4 @@
-import React, { useEffect} from 'react';
+import React, { useEffect } from 'react';
 import ResizeScreen from '../../utils/ScreenSize';
 import Arrow from "../../assets/Arrow.svg";
 import NoImage from "../../assets/no_image.webp";
