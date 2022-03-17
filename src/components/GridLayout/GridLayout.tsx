@@ -2,19 +2,17 @@ import React, { useEffect } from 'react';
 import "./styles.scss";
 import Card from "../Card/index";
 import { TypeArtists, TypePaintings } from "../../utils/Types";
-import { useAppDispatch, useAppSelector } from "../../hooks/useToolkit";
-import { getPaintingsOfArtist } from "../../slices/artistSlice";
 import ResizeScreen from "../../utils/ScreenSize";
 
 type CardArt = {
   type: 'artist' | 'paint';
-  array: TypeArtists | TypeArtists[];
+  array: TypePaintings[] | TypeArtists[];
 };
 
 interface GridLayoutProps {
   items: CardArt,
   theme: string,
-  setSlider: () => void,
+  setSlider?: any,
 }
 
 function identity(arg: any): any {
@@ -29,15 +27,12 @@ export default function GridLayout(
   } : GridLayoutProps,
 ) {
 
-  const dispatch = useAppDispatch();
   const screen = ResizeScreen();
   const arr = identity(items.array);
-  const paintings = useAppSelector((state) => state.artists.arr_paintings);
   
   useEffect(() => {
     if (items.type === 'artist') {
-      dispatch(getPaintingsOfArtist(arr._id));
-      console.log("type type", paintings);
+      console.log("type type", items.array);
     }
   }, []);
 
@@ -57,11 +52,12 @@ export default function GridLayout(
         />
       ))}
 
-      {items.type === 'artist' && paintings.length !== 0 && paintings.map((el: TypePaintings) => (
+      {items.type === 'artist' && arr.length !== 0 && arr.map((el: TypePaintings) => (
         <Card 
           key={el._id} 
           type={items.type}
           obj={{
+            id: el._id,
             src_img: screen.isDesktop ? el.image.webp2x : el.image.webp,
             name: el.name,
             yearOfCreation: el.yearOfCreation,

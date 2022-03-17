@@ -20,7 +20,7 @@ function Main() {
       <Header theme={theme} />
       {loading && <Loader theme={theme}/>}
       {!loading && artists.length !== 0 && <div className="grid_layout">
-        <GridLayout items={{ type: 'paint', array: artists }} theme={theme} setSlider={() => {}}/>
+        <GridLayout items={{ type: 'paint', array: artists }} theme={theme} />
       </div>
       }
       <Footer theme={theme} />

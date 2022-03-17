@@ -4,8 +4,9 @@ import ResizeScreen from "../../utils/ScreenSize";
 
 import NoImage from "../../assets/no_image.webp";
 
-// const { LOCAL_HOST } = process.env;
+const { LOCAL_HOST } = process.env;
 type TypePaint = {
+  id: string;
   name: string;
   yearOfCreation?: string;
   src_img?: string;
@@ -45,10 +46,16 @@ const Card: FC<CardProps> = ({ type,  obj, onClick } : CardProps) => {
     console.log("type type", urlImage);
   }, []);
 
+  const setImageSlider = () => {
+    if (onClick !== undefined) {
+      onClick(ob.id);
+    }
+  };
+
   return (
     <div className={`container-card ${type === "artist" ? "container-card__paint" : ""}`} 
-      style={{ backgroundImage: `url(${NoImage})` }}
-      onClick={onClick}
+      style={{ backgroundImage: `url(${LOCAL_HOST}${urlImage})` }}
+      onClick={setImageSlider}
     >
       {type === 'paint' && <div className={`container-card__footer ${isTabletScreen ? "container-card__footer--hover" : ""}`} onClick={onTapFooter}>
          
