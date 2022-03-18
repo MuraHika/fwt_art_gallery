@@ -4,6 +4,8 @@ import GridLayout from "../components/GridLayout";
 import Footer from "../components/Footer";
 import Loader from "../components/Loader";
 import Slider from "../components/Slider";
+import Input from "../components/Input";
+import Lock from "../assets/Lock.svg";
 import ArtistHeader from "../components/ArtistHeader";
 import { getPaintingsOfArtist } from "../slices/artistSlice";
 import { useAppSelector, useAppDispatch } from "../hooks/useToolkit";
@@ -32,18 +34,18 @@ function Artist() {
   };
 
   return (
-      <div className={`main_page main_page--${theme}`}>
+    <div className={`artist_page artist_page--${theme}`}>
 
-        {isSlader && <Slider theme={theme} paint={paintOnSlider} paintings={paintings} setSlider={setSlider}/>}
-        <Header theme={theme} />
-        {!loading && artist !== undefined && <ArtistHeader theme={theme} artist={artist}/>}
-        {loading && <Loader theme={theme}/>}
-        {!loading && artist !== undefined && <div className="grid_layout__painting">
-          <GridLayout items={{ type: 'artist', array: paintings }} theme={theme} setSlider={setSlider}/>
-        </div>
-        }
-        <Footer theme={theme} />
+      {isSlader && <Slider theme={theme} paint={paintOnSlider} paintings={paintings} setSlider={setSlider}/>}
+      <Header theme={theme} />
+      {!loading && artist !== undefined && <ArtistHeader theme={theme} artist={artist}/>}
+      {loading && <Loader theme={theme}/>}
+      {!loading && artist !== undefined && <div className="grid_layout__painting">
+        <GridLayout items={{ type: 'artist', array: paintings }} theme={theme} setSlider={setSlider}/>
       </div>
+      }
+      <Footer theme={theme} />
+    </div>
   );
 }
 

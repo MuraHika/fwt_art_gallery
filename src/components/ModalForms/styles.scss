@@ -1,0 +1,70 @@
+@import "../../styles.scss";
+
+.container-modal {
+  position: fixed;
+  background: rgba($main-color__black, 0.8);
+  width: 100vw;
+  height: 100vh;
+  z-index: 1050;
+  font-family: $family_font;
+  color: $main-color__black;
+}
+
+.modal {
+  width: 400px;
+  height: 420px;
+  /* White/100 */
+
+  background: #FFFFFF;
+  /* Card Shadow */
+
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.12);
+  border-radius: 8px;
+
+  margin: 0 auto;
+  top: 50%;
+  /* margin-top: 25%; */
+  position: relative;
+  transform: translate(0, -50%);
+}
+
+.modal-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  // width: fit-content;
+
+  h1 {
+    font-style: normal;
+    font-weight: $weight_font__black;
+    font-size: $size_font__20;
+    line-height: 23px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin-top: 38px;
+
+  }
+
+  span {
+    font-style: normal;
+    font-weight: $weight_font__light;
+    font-size: $size_font__14;
+    line-height: 15px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    font-variant: small-caps;
+    margin-top: 40px;
+  }
+}
+
+.input {
+  margin-top: 20px;
+  width: 230px;
+  height: 40px;
+}
+
+.button {
+  margin-top: 30px;
+}

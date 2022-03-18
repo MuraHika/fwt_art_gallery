@@ -1,7 +1,7 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import Card from './Card';
-import IMG from "../../assets/dali_picture.png";
+import IMG from "../../assets/no_image.webp";
 
 export default {
   title: 'Card',
@@ -23,7 +23,7 @@ export const FullFilledFields = Template.bind({});
 FullFilledFields.args = {
   type: 'artist',
   obj: {
-    src_img: IMG,
+    src_img: "/images/62220f329b8d0e56d1cea487/image2x.webp",
     author_name: "Salvador Dalí", 
     years_live: "(1904-1989)",
     picture_name: "The Persistence of Memory",
@@ -35,7 +35,7 @@ export const OneField = Template.bind({});
 OneField.args = {
   type: 'artist',
   obj: {
-    src_img: IMG,
+    src_img: "/images/62220f329b8d0e56d1cea487/image2x.webp",
     author_name: "Salvador Dalí", 
     years_live: "(1904-1989)",
     picture_name: "The Persistence of Memory",

@@ -49,6 +49,7 @@ export default function Slider({
       currentIndexRef.current = index;
       window.addEventListener('keydown', onKeyPress);
     }
+  
   }, []);
 
   const SlidePaint = (slideIndex: number) => {
@@ -63,6 +64,9 @@ export default function Slider({
       setCurrentIndex(slideIndex);
       currentIndexRef.current = slideIndex;
     }
+    return () => {
+      setCurrentPage({ id: "", img: "", name: "", dateCreated: "" }); // This worked for me
+    };
   };
 
   const onKeyPress = (e: KeyboardEvent) => {
@@ -72,8 +76,15 @@ export default function Slider({
     } else if (e.key === "ArrowLeft") {
       SlidePaint(currentIndexRef.current - 1);
     } else if (e.key === "Escape") {
+      window.removeEventListener('keydown', onKeyPress);
       setSlider(false);
     } 
+  };
+
+  const CloseSlider = () => {
+    console.log("ddd");
+    window.removeEventListener('keydown', onKeyPress);
+    setSlider(false);
   };
 
   return (
@@ -104,7 +115,7 @@ export default function Slider({
                 <div className='interactive_buttons-icon'><Delete /></div>
               </div>
             </div>
-            <div className='close_button' onClick={() => setSlider(false)}><Close /></div>
+            <div className='close_button' onClick={() => CloseSlider()}><Close /></div>
             <div className='slider-artist_info'>
                 <div className='artist_info'>{currentPaint.name}</div>
                 <div className='artist_info'>{currentPaint.dateCreated}</div>
