@@ -8,31 +8,75 @@
   z-index: 1050;
   font-family: $family_font;
   color: $main-color__black;
+
+  animation-name: appear;
+  animation-duration: 300ms;
 }
 
 .modal {
   width: 400px;
   height: 420px;
-  /* White/100 */
 
   background: #FFFFFF;
-  /* Card Shadow */
 
-  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.12);
+  box-shadow: 0px 2px 2px rgba($main-color__black, 0.12);
   border-radius: 8px;
 
   margin: 0 auto;
-  top: 50%;
-  /* margin-top: 25%; */
-  position: relative;
-  transform: translate(0, -50%);
+  
+  animation-duration: 0.5s;
+
+  display: flex;
+  justify-content: center;
+
+  @include _1024 {
+    top: 50%;
+    position: relative;
+    transform: translate(0, -50%);
+    animation-name: slide-in;
+  }
+  @include _768 {
+    top: 50%;
+    position: relative;
+    transform: translate(0, -50%);
+    animation-name: slide-in;
+  }
+
+  @include _320 {
+    width: 100%;
+    border-radius: 35px 35px 0px 0px;
+    height: fit-content;
+    bottom: 0;
+    position: absolute;
+    animation-name: mobile-slide-in;
+  }
+}
+
+.close-button {
+  position: absolute;
+  right: 0;
+  margin-right: 22px;
+  margin-top: 22px;
+  cursor: pointer;
+  @include _320 {
+    margin-right: 28px;
+    margin-top: 28px;
+  }
+}
+
+.close-button svg {
+  transform: scale(0.6);
+  path {
+    stroke-width: 3;
+    stroke: $main-color__black;
+  }
 }
 
 .modal-form {
   display: flex;
   flex-direction: column;
   align-items: center;
-  // width: fit-content;
+  justify-content: center;
 
   h1 {
     font-style: normal;
@@ -42,11 +86,13 @@
     display: flex;
     align-items: center;
     text-align: center;
-    margin-top: 38px;
-
+    margin-bottom: 25px;
+    @include _320 {
+      margin-top: 67px;
+    }
   }
 
-  span {
+  .form-link {
     font-style: normal;
     font-weight: $weight_font__light;
     font-size: $size_font__14;
@@ -56,15 +102,53 @@
     text-align: center;
     font-variant: small-caps;
     margin-top: 40px;
+    @include _320 {
+      margin-bottom: 67px;
+    }
   }
 }
 
-.input {
-  margin-top: 20px;
+.modal-form .input {
+  margin-top: 10px;
   width: 230px;
   height: 40px;
+  @include _320 {
+    width: 290px;
+  }
 }
 
-.button {
-  margin-top: 30px;
+.modal-form .button {
+  margin-top: 20px;
+  width: 230px;
+  @include _320 {
+    width: 290px;
+  }
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slide-in {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(-50%);
+  }
+}
+
+
+@keyframes mobile-slide-in {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
 }

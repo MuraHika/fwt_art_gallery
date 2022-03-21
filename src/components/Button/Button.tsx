@@ -7,6 +7,7 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   isPrimary?: boolean;
   theme?: "dark" | "light";
   paddings: string;
+  type?: "submit" | "reset" | "button";
 }
 
 const Button : React.FunctionComponent<ButtonProps> = ({
@@ -14,12 +15,13 @@ const Button : React.FunctionComponent<ButtonProps> = ({
   size,
   isPrimary,
   theme,
+  type,
   paddings,
   ...props } : ButtonProps) => (
     <button {...props} 
     className={`button button--${size} ${isPrimary ? `button--primary_${theme}` : `button--secondary_${theme}`}`} 
-    type='button' 
-    style={{ padding: paddings }}>
+    style={{ padding: paddings }}
+    type={type}>
         {text}
     </button>
 );
@@ -30,4 +32,5 @@ Button.defaultProps = {
   size: "medium",
   isPrimary: true,
   theme: "light",
+  type: "button",
 };

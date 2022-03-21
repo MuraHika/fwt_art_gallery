@@ -1,13 +1,17 @@
 @import "../../styles.scss";
 
-.input-container {
+.input-container,
+.input-container span {
   display: flex;
   flex-direction: column;
 
   font-family: $family_font;
   font-style: normal;
   font-weight: $weight_font__regular;
-  font-size: $size_font__14;
+  font-size: $size_font__12;
+  .error {
+    font-size: $size_font__10;
+  }
   line-height: 14px;
 
   p {
@@ -19,6 +23,10 @@
     border: none;
     height: 100%;
     width: 100%;
+  }
+
+  .input-error {
+    border: 1px solid $error-color !important;
   }
 }
 
@@ -34,6 +42,7 @@
   svg {
     margin-right: 10px;
   }
+
 }
 
 .input-container--light {
@@ -153,4 +162,10 @@
       font-size: $size_font__10;
     }
   }
+}
+
+
+.error {
+  margin-top: 1px;
+  color: $error-color;
 }

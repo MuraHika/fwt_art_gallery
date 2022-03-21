@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Header from "../components/Header";
 import GridLayout from "../components/GridLayout";
 import ModalRegister from "../components/ModalForms/ModalRegister";
+import ModalAuth from "../components/ModalForms/ModalAuth";
 import Footer from "../components/Footer";
 import Loader from "../components/Loader";
 import { useAppSelector } from "../hooks/useToolkit";
@@ -11,8 +12,6 @@ function Main() {
   const artists = useAppSelector((state) => state.artists.arr_artists);  
   const theme = useAppSelector((state) => state.artists.theme);
   const loading = useAppSelector((state) => state.artists.loading);
-  const [isRegister, setIsRegister] = useState<boolean>(true);
-  const [isAuth, setIsAuth] = useState<boolean>(true);
 
   useEffect(() => {
     console.log("looog", artists);
@@ -20,7 +19,6 @@ function Main() {
 
   return (
     <div className={`main_page main_page--${theme}`}>
-      {isRegister && <ModalRegister />}
       <Header theme={theme} />
       {loading && <Loader theme={theme}/>}
       {!loading && artists.length !== 0 && <div className="grid_layout">
