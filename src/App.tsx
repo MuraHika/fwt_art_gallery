@@ -44,7 +44,7 @@ function App() {
         <Suspense fallback={<div>Loading...</div>}>
           <Routes>
             <Route path="/" element={<MainPage />} />
-            <Route path="artist/" element={<ArtistPage />} />
+            <Route path="artist/:artistId" element={<ArtistPage />}/>
             {/* <Route path="login/" element={<Login />} />
             <Route path="register/" element={<Register />} /> */}
           </Routes>

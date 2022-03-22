@@ -16,6 +16,7 @@ type SliceState = {
   error: null | string,
   errorValidate: { email: string, password: string, confirmPassword: string },
   user: any,
+  artist: TypeArtists | null,
 };
 
 const initialState : SliceState = {
@@ -24,7 +25,7 @@ const initialState : SliceState = {
   arr_paintings: [],
   theme: "light",
   loading: true,
-  isLogin: true,
+  isLogin: false,
   authToken: { 
     accessToken: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1haWxAbS5ydSIsImlhdCI6MTY0Nzk0MzMwNiwiZXhwIjoxNjQ3OTY0OTA2fQ.gHoTA9ykcYQQEsbQE58NIjHyIFQlr8UAJKNSfgC0xGk",
     refreshToken:"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1haWxAbS5ydSIsImlhdCI6MTY0Nzk0MzMwNiwiZXhwIjoxNjUzMTI3MzA2fQ.RueJvWWJL4JICyX9WtI4ET3dKfkqLwJyOCvY2ivHlpA",
@@ -33,6 +34,7 @@ const initialState : SliceState = {
   error: null,
   errorValidate: { email: "error", password: "error", confirmPassword: "error" },
   user: null,
+  artist: null,
 };
 
 const header = () => {
@@ -144,9 +146,9 @@ export const getArtists = createAsyncThunk(
   "artists/getArtists",
   async (_, { rejectWithValue }) => {
     try {
-      const response = await axios.get(`${LOCAL_HOST}/artists/static/`, header());
+      const response = await axios.get(`${LOCAL_HOST}/artists`, header());
       console.log(response.data);
-      return response.data;
+      return response.data.data;
     } catch (error) {
       return rejectWithValue((error as Error).message);
     }
@@ -207,6 +209,9 @@ const artistSlice = createSlice({
     },
     setLoading(state, action) {
       state.loading = action.payload;
+    },
+    setArtist(state, action) {
+      state.artist = action.payload;
     },
     setLogin(state, action){
       state.isLogin = action.payload;
@@ -297,5 +302,5 @@ const artistSlice = createSlice({
   },
 });
 
-export const { setNewTheme, setLoading, setLogin, checkEmptyField } = artistSlice.actions;
+export const { setNewTheme, setLoading, setArtist, setLogin, checkEmptyField } = artistSlice.actions;
 export default artistSlice.reducer;

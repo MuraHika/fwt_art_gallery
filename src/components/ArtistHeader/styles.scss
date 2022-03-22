@@ -3,7 +3,7 @@
 .artist-container {
   padding: 0 20px;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   margin-top: 130px;
   margin-bottom: 20px;
@@ -13,6 +13,11 @@
   @include _320 {
     flex-direction: column;
   }
+}
+
+.artist {
+  display: flex;
+  flex-direction: row;
 }
 
 .artist-profile {
@@ -54,17 +59,11 @@
 }
 
 .artist_profile-picture {
-  // max-width: 482px;
-  // max-height: 350px;
-  // width: 482px;
-  // height: 350px;
-  // width: 100%;
   margin-bottom: 20px;
   @include _768 {
     max-height: 310px;
   }
   @include _320 {
-    // background-size: contain;
     background-repeat: no-repeat;
     object-fit: cover ;
     width: 100%;
@@ -110,5 +109,22 @@
   align-content: space-between;
   @include _320 {
     justify-content: space-between;
+  }
+}
+
+.button-back {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(2px);
+
+  border-radius: 6px;
+  width: 30px;
+  height: 30px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  @include _320 {
+    margin-bottom: 15px;
   }
 }

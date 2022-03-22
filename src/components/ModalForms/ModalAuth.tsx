@@ -32,6 +32,12 @@ const ModalAuth: FC<ModalAuthProps> = ({ setRegister, setAuth } : ModalAuthProps
 
     if (email.length > 0 && password.length > 0) {
       dispatch(authUser({ email: email, password: password }))
+        .then((res) => {
+          if (res.meta.requestStatus !== "rejected") {
+            console.log("okkkk", res);
+            closeModal();
+          }
+        })
         .finally(() => {
           setPassword("");
         });
@@ -59,6 +65,11 @@ const ModalAuth: FC<ModalAuthProps> = ({ setRegister, setAuth } : ModalAuthProps
     } 
   };
 
+  const onNavigate = () => {
+    setRegister(true);
+    setAuth(false);
+  };
+
   return (
     <div className="container-modal" onClick={(e) => handleCloseModal(e)}>
       <div className='modal'>
@@ -71,7 +82,7 @@ const ModalAuth: FC<ModalAuthProps> = ({ setRegister, setAuth } : ModalAuthProps
           <Input name='password'  text="Password" icon={<Lock />} type="password" onChange={(e) => setPassword(e.currentTarget.value)}  error={error.password} value={password}/>
           <Button theme="dark" isPrimary={false} size="medium" text="LOG IN" paddings='12px 66px' type="submit" onClick={handleSubmit}/>
           <span className='form-link'>If you don't have an account yet,  
-            <Link theme="light" text='please sign up' url=''/> 
+            <Link theme="light" text='please sign up' url='' isTargetBlank={false} onClick={() => onNavigate()}/> 
           </span>
         </form>
       </div>

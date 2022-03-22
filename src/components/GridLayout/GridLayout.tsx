@@ -3,6 +3,9 @@ import "./styles.scss";
 import Card from "../Card/index";
 import { TypeArtists, TypePaintings } from "../../utils/Types";
 import ResizeScreen from "../../utils/ScreenSize";
+import { useNavigate } from 'react-router-dom';
+import { useAppDispatch } from '../../hooks/useToolkit';
+import { setArtist } from '../../slices/artistSlice';
 
 type CardArt = {
   type: 'artist' | 'paint';
@@ -29,12 +32,20 @@ export default function GridLayout(
 
   const screen = ResizeScreen();
   const arr = identity(items.array);
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   
   useEffect(() => {
     if (items.type === 'artist') {
       console.log("type type", items.array);
     }
   }, []);
+
+  const redirectToArtist = async (artist: TypeArtists) => {
+    await dispatch(setArtist(artist));
+    console.log(artist);
+    navigate(`artist/${artist._id}`);
+  };
 
   return (
     <div className={`grid grid--${theme}`}>
@@ -49,6 +60,7 @@ export default function GridLayout(
             src_img: screen.isDesktop ? el.mainPainting.image.webp2x : el.mainPainting.image.webp,
             years_live: el.yearsOfLife,
           }}
+          onClick={() => redirectToArtist(el)}
         />
       ))}
 

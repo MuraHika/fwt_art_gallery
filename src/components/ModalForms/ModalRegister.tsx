@@ -33,6 +33,12 @@ const ModalRegister: FC<ModalRegisterProps> = ({ setRegister, setAuth } : ModalR
     console.log('confirm password', confirmPassword);
     if (email.length > 0 && password.length > 0 && confirmPassword.length > 0) {
       dispatch(registerUser({ email: email, password: password, confirmPassword: confirmPassword }))
+        .then((res) => {
+          if (res.meta.requestStatus !== "rejected") {
+            console.log("okkkk", res);
+            closeModal();
+          }
+        })
         .finally(() => {
           setPassword("");
           setConfirmPassword("");
@@ -61,6 +67,11 @@ const ModalRegister: FC<ModalRegisterProps> = ({ setRegister, setAuth } : ModalR
     } 
   };
 
+  const onNavigate = () => {
+    setRegister(true);
+    setAuth(false);
+  };
+
   return (
     <div className="container-modal" onClick={(e) => handleCloseModal(e)} >
       <div className='modal'>
@@ -74,7 +85,8 @@ const ModalRegister: FC<ModalRegisterProps> = ({ setRegister, setAuth } : ModalR
           <Input text="Comfirm password" icon={<Lock />} type="password"  onChange={(e) => setConfirmPassword(e.currentTarget.value)} error={error.confirmPassword} value={confirmPassword}/>
           <Button theme="dark" isPrimary={false} size="medium" text="REGISTRATION" paddings='12px 66px' type="submit" onClick={handleSubmit}/>
           <span className='form-link'>If you already have an account, 
-            <Link theme="light" text='please log in' url=''/> </span>
+            <Link theme="light" text='please log in' url=''  isTargetBlank={false}  onClick={() => onNavigate()}/> 
+          </span>
         </form>
       </div>
     </div>
