@@ -6,6 +6,8 @@ import Button from '../Button';
 import Input from '../Input';
 import Close from "../../assets/Close.svg";
 import Link from '../Link';
+import { useAppDispatch, useAppSelector } from "../../hooks/useToolkit";
+import { authUser, checkEmptyField } from "../../slices/artistSlice";
 
 interface ModalAuthProps {
   setRegister: React.Dispatch<React.SetStateAction<boolean>>; 
@@ -13,9 +15,11 @@ interface ModalAuthProps {
 }
 
 const ModalAuth: FC<ModalAuthProps> = ({ setRegister, setAuth } : ModalAuthProps) => {
+
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const [error, setError] = useState({ email: "error", password: "error" });
+  const dispatch = useAppDispatch();
+  const error = useAppSelector((state) => state.artists.errorValidate);
 
   useEffect(() => {
     window.addEventListener('keyup', onKeyPress);
@@ -25,7 +29,15 @@ const ModalAuth: FC<ModalAuthProps> = ({ setRegister, setAuth } : ModalAuthProps
     e.preventDefault();
     console.log('email', email);
     console.log('password', password);
-    setError((prevState) => ({ ...prevState, email: "Enter your email address", confirmPassword: "Confirm your password" }));
+
+    if (email.length > 0 && password.length > 0) {
+      dispatch(authUser({ email: email, password: password }))
+        .finally(() => {
+          setPassword("");
+        });
+    } else {
+      dispatch(checkEmptyField({ email:email, password: password }));
+    }
   };
 
   const closeModal = () => {
@@ -55,8 +67,8 @@ const ModalAuth: FC<ModalAuthProps> = ({ setRegister, setAuth } : ModalAuthProps
         </div>
         <form className='modal-form' onSubmit={handleSubmit}>
           <h1>AUTHORIZATION</h1>
-          <Input name='email' text="Email" icon={<User />} type="text" onChange={(e) => setEmail(e.currentTarget.value)}  error={error.email}/>
-          <Input name='password'  text="Password" icon={<Lock />} type="password" onChange={(e) => setPassword(e.currentTarget.value)}  error={error.password}/>
+          <Input name='email' text="Email" icon={<User />} type="text" onChange={(e) => setEmail(e.currentTarget.value)}  error={error.email} value={email}/>
+          <Input name='password'  text="Password" icon={<Lock />} type="password" onChange={(e) => setPassword(e.currentTarget.value)}  error={error.password} value={password}/>
           <Button theme="dark" isPrimary={false} size="medium" text="LOG IN" paddings='12px 66px' type="submit" onClick={handleSubmit}/>
           <span className='form-link'>If you don't have an account yet,  
             <Link theme="light" text='please sign up' url=''/> 
@@ -68,3 +80,4 @@ const ModalAuth: FC<ModalAuthProps> = ({ setRegister, setAuth } : ModalAuthProps
 };
 
 export default ModalAuth;
+

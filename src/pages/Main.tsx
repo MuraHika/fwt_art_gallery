@@ -1,8 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import Header from "../components/Header";
 import GridLayout from "../components/GridLayout";
-import ModalRegister from "../components/ModalForms/ModalRegister";
-import ModalAuth from "../components/ModalForms/ModalAuth";
 import Footer from "../components/Footer";
 import Loader from "../components/Loader";
 import { useAppSelector } from "../hooks/useToolkit";

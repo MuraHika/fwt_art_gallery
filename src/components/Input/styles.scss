@@ -9,8 +9,12 @@
   font-style: normal;
   font-weight: $weight_font__regular;
   font-size: $size_font__12;
+
+  width: min-content;
   .error {
+    width: 100%;
     font-size: $size_font__10;
+    word-wrap: break-word;
   }
   line-height: 14px;
 

@@ -6,6 +6,8 @@ import Button from '../Button';
 import Input from '../Input';
 import Close from "../../assets/Close.svg";
 import Link from '../Link';
+import { useAppDispatch, useAppSelector } from "../../hooks/useToolkit";
+import { registerUser, checkEmptyField } from "../../slices/artistSlice";
 
 interface ModalRegisterProps {
   setRegister: React.Dispatch<React.SetStateAction<boolean>>; 
@@ -17,7 +19,8 @@ const ModalRegister: FC<ModalRegisterProps> = ({ setRegister, setAuth } : ModalR
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [confirmPassword, setConfirmPassword] = useState<string>("");
-  const [error, setError] = useState({ email: "error", password: "error", confirmPassword: "error" });
+  const dispatch = useAppDispatch();
+  const error = useAppSelector((state) => state.artists.errorValidate);
 
   useEffect(() => {
     window.addEventListener('keyup', onKeyPress);
@@ -28,7 +31,15 @@ const ModalRegister: FC<ModalRegisterProps> = ({ setRegister, setAuth } : ModalR
     console.log('email', email);
     console.log('password', password);
     console.log('confirm password', confirmPassword);
-    setError((prevState) => ({ ...prevState, email: "Enter your email address", confirmPassword: "Confirm your password" }));
+    if (email.length > 0 && password.length > 0 && confirmPassword.length > 0) {
+      dispatch(registerUser({ email: email, password: password, confirmPassword: confirmPassword }))
+        .finally(() => {
+          setPassword("");
+          setConfirmPassword("");
+        });
+    } else {
+      dispatch(checkEmptyField({ email:email, password: password }));
+    }
   };
 
   const closeModal = () => {
@@ -58,9 +69,9 @@ const ModalRegister: FC<ModalRegisterProps> = ({ setRegister, setAuth } : ModalR
         </div>
         <form className='modal-form' onSubmit={handleSubmit}>
           <h1>СREATE YOUR PROFILE</h1>
-          <Input text="Email" icon={<User />} type="text" onChange={(e) => setEmail(e.currentTarget.value)} error={error.email} />
-          <Input text="Password" icon={<Lock />} type="password"  onChange={(e) => setPassword(e.currentTarget.value)} error={error.password} />
-          <Input text="Comfirm password" icon={<Lock />} type="password"  onChange={(e) => setConfirmPassword(e.currentTarget.value)} error={error.confirmPassword} />
+          <Input text="Email" icon={<User />} type="text" onChange={(e) => setEmail(e.currentTarget.value)} error={error.email} value={email}/>
+          <Input text="Password" icon={<Lock />} type="password"  onChange={(e) => setPassword(e.currentTarget.value)} error={error.password} value={password}/>
+          <Input text="Comfirm password" icon={<Lock />} type="password"  onChange={(e) => setConfirmPassword(e.currentTarget.value)} error={error.confirmPassword} value={confirmPassword}/>
           <Button theme="dark" isPrimary={false} size="medium" text="REGISTRATION" paddings='12px 66px' type="submit" onClick={handleSubmit}/>
           <span className='form-link'>If you already have an account, 
             <Link theme="light" text='please log in' url=''/> </span>

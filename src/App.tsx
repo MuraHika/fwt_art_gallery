@@ -8,6 +8,8 @@ import { getArtists, getGenres, setTheme, setLoading, getAuthToken } from "./sli
 function App() {
   const MainPage = React.lazy(() => import("./pages/Main"));
   const ArtistPage = React.lazy(() => import("./pages/Artist"));
+  const Login = React.lazy(() => import("./components/ModalForms/ModalAuth"));
+  const Register = React.lazy(() => import("./components/ModalForms/ModalRegister"));
 
   const dispatch = useAppDispatch();
 
@@ -43,6 +45,8 @@ function App() {
           <Routes>
             <Route path="/" element={<MainPage />} />
             <Route path="artist/" element={<ArtistPage />} />
+            {/* <Route path="login/" element={<Login />} />
+            <Route path="register/" element={<Register />} /> */}
           </Routes>
         </Suspense>
     </div>
