@@ -3,7 +3,8 @@ import { Helmet } from "react-helmet";
 import { batch } from 'react-redux';
 import { Routes, Route } from "react-router-dom";
 import { useAppDispatch } from "./hooks/useToolkit";
-import { getArtists, getGenres, setTheme, setLoading, getAuthToken } from "./slices/artistSlice";
+import { getArtists, getGenres, setTheme, setLoading, getAuthToken, checkJWT } from "./slices/artistSlice";
+import { getCookie } from "./utils/getCookies";
 
 function App() {
   const MainPage = React.lazy(() => import("./pages/Main"));
@@ -17,16 +18,14 @@ function App() {
     batch(() => {
       setTimeout(async () => {
         // await getToken();
+        await dispatch(checkJWT());
         dispatch(getArtists());
         dispatch(getGenres());
         dispatch(setLoading(false));
       }, 1000);
     });
 
-    const theme = document.cookie.split('; ').reduce((r, v) => {
-      const parts = v.split('=');
-      return parts[0] === "theme" ? decodeURIComponent(parts[1]) : r;
-    }, '');
+    const theme = getCookie("theme");
     dispatch(setTheme( theme === "light" ? "light" : "dark"));
     console.log("cookie", theme);
   }, []);
