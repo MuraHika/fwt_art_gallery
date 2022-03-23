@@ -9,15 +9,15 @@ import { getCookie } from "./utils/getCookies";
 function App() {
   const MainPage = React.lazy(() => import("./pages/Main"));
   const ArtistPage = React.lazy(() => import("./pages/Artist"));
-  const Login = React.lazy(() => import("./components/ModalForms/ModalAuth"));
-  const Register = React.lazy(() => import("./components/ModalForms/ModalRegister"));
+  // const Login = React.lazy(() => import("./components/ModalForms/ModalAuth"));
+  // const Register = React.lazy(() => import("./components/ModalForms/ModalRegister"));
 
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     batch(() => {
       setTimeout(async () => {
-        // await getToken();
+        await getToken();
         await dispatch(checkJWT());
         dispatch(getArtists());
         dispatch(getGenres());

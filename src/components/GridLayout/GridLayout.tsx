@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import "./styles.scss";
+import { useNavigate } from 'react-router-dom';
 import Card from "../Card/index";
 import { TypeArtists, TypePaintings } from "../../utils/Types";
 import ResizeScreen from "../../utils/ScreenSize";
-import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../../hooks/useToolkit';
 import { setArtist } from '../../slices/artistSlice';
 

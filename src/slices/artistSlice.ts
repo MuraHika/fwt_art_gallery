@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk, AsyncThunk, AsyncThunkConfig, AsyncThunkPayloadCreator, AsyncThunkOptions } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from 'axios';
 import { getCookie } from "../utils/getCookies";
 import { TypeArtists, TypeGenres, TypePaintings } from "../utils/Types";
@@ -65,8 +65,8 @@ export const getAuthToken = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const response = await axios.post(`${LOCAL_HOST}/auth/login`, {
-        username: "m@mail.ru",
-        password: "Rhjkbr99!",
+        username: "demoUser",
+        password: "111",
       });
 
       document.cookie = `token=${response.data.accessToken}`;
@@ -80,7 +80,7 @@ export const getAuthToken = createAsyncThunk(
 
 export const checkJWT = createAsyncThunk(
   "artists/checkJWT",
-  async (_, { rejectWithValue, getState, dispatch  }) => {
+  async (_, { rejectWithValue, getState  }) => {
     try {
       const token = getCookie("token");
       const state = getState() as SliceState;
@@ -109,10 +109,12 @@ export const checkJWT = createAsyncThunk(
 
 export const authUser = createAsyncThunk(
   "artists/authUser",
-  async ( { email, password }: { email: string; password: string }, { rejectWithValue, fulfillWithValue }) => {
+  async ( { email, password }: { email: string; password: string }, { rejectWithValue }) => {
     try {
-      const isEmailValidate = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/.test(email);
-      const isPasswordValidate = /(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z])[0-9!@#$%^&*a-zA-Z]{8,}/.test(password);
+      // const isEmailValidate = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/.test(email);
+      // const isPasswordValidate = /(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z])[0-9!@#$%^&*a-zA-Z]{8,}/.test(password);
+      const isEmailValidate = "";
+      const isPasswordValidate = "";
       if (email.length > 50 || !isEmailValidate) {
         console.log("email validate", isEmailValidate);
         return rejectWithValue("");
@@ -136,11 +138,12 @@ export const authUser = createAsyncThunk(
 
 export const registerUser = createAsyncThunk(
   "artists/registerUser",
-  async ( { email, password, confirmPassword }: { email: string; password: string; confirmPassword: string }, { rejectWithValue, fulfillWithValue }) => {
+  async ( { email, password, confirmPassword }: { email: string; password: string; confirmPassword: string }, { rejectWithValue }) => {
     try {
-      const isEmailValidate = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/.test(email);
-      const isPasswordValidate = /(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z])[0-9!@#$%^&*a-zA-Z]{8,}/.test(password);
-
+      // const isEmailValidate = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/.test(email);
+      // const isPasswordValidate = /(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z])[0-9!@#$%^&*a-zA-Z]{8,}/.test(password);
+      const isEmailValidate = "";
+      const isPasswordValidate = "";
       if (password !== confirmPassword) {
         return rejectWithValue("wrong confirmPassword");
       }

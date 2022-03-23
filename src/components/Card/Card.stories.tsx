@@ -1,7 +1,7 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import Card from './Card';
-import IMG from "../../assets/no_image.webp";
+// import IMG from "../../assets/no_image.webp";
 
 export default {
   title: 'Card',

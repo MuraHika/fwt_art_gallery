@@ -81,7 +81,7 @@ const ModalAuth: FC<ModalAuthProps> = ({ setRegister, setAuth } : ModalAuthProps
           <Input name='email' text="Email" icon={<User />} type="text" onChange={(e) => setEmail(e.currentTarget.value)}  error={error.email} value={email}/>
           <Input name='password'  text="Password" icon={<Lock />} type="password" onChange={(e) => setPassword(e.currentTarget.value)}  error={error.password} value={password}/>
           <Button theme="dark" isPrimary={false} size="medium" text="LOG IN" paddings='12px 66px' type="submit" onClick={handleSubmit}/>
-          <span className='form-link'>If you don't have an account yet,  
+          <span className='form-link'>If you dont have an account yet,  
             <Link theme="light" text='please sign up' url='' isTargetBlank={false} onClick={() => onNavigate()}/> 
           </span>
         </form>

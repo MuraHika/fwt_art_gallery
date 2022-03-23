@@ -21,6 +21,7 @@ const Button : React.FunctionComponent<ButtonProps> = ({
     <button {...props} 
     className={`button button--${size} ${isPrimary ? `button--primary_${theme}` : `button--secondary_${theme}`}`} 
     style={{ padding: paddings }}
+    // eslint-disable-next-line react/button-has-type
     type={type}>
         {text}
     </button>
