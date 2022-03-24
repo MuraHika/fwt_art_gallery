@@ -148,7 +148,8 @@
     }
 }
 
-.interactive_buttons-icon {
+.interactive_buttons-icon,
+.favorite-picture {
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(2px);
     /* Note: backdrop-filter has minimal browser support */
@@ -157,6 +158,7 @@
     padding: 7px;
 
     margin-right: 15px;
+    cursor: pointer;
 
     @include _1024{
         margin-right: 0;
@@ -169,6 +171,21 @@
 
     @include _1024 {
         margin-bottom: 0;
+    }
+}
+
+.favorite-picture:hover,
+.favorite-picture--active:hover {
+    svg > path {
+        fill: #FFFF00;
+        // #FF0000
+        // #AAAAAA
+    }
+}
+
+.favorite-picture--active {
+    svg > path {
+        color:#FFFF00;
     }
 }
 

@@ -34,7 +34,7 @@ export default function GridLayout(
   const arr = identity(items.array);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const isLogin = useAppSelector((state) => state.artists.isLogin);
+  const isLogin = useAppSelector((state) => state.user.isLogin);
   
   useEffect(() => {
     if (items.type === 'artist') {

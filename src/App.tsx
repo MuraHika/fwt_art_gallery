@@ -3,7 +3,8 @@ import { Helmet } from "react-helmet";
 import { batch } from 'react-redux';
 import { Routes, Route } from "react-router-dom";
 import { useAppDispatch } from "./hooks/useToolkit";
-import { getArtists, getGenres, setLoading, getAuthToken } from "./slices/artistSlice";
+import { getArtists, getGenres, setLoading } from "./slices/artistSlice";
+import { getAuthToken } from "./slices/userSlice";
 
 function App() {
   const MainPage = React.lazy(() => import("./pages/Main"));

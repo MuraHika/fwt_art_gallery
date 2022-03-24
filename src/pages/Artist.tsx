@@ -41,7 +41,7 @@ function Artist() {
   return (
     <div className={`artist_page artist_page--${theme}`}>
 
-      {isSlader && <Slider theme={theme} paint={paintOnSlider} paintings={paintings} setSlider={setSlider}/>}
+      {isSlader && <Slider theme={theme} paint={paintOnSlider} paintings={paintings} setSlider={setSlider} artist={artist}/>}
       <Header theme={theme} />
       {!loading && artist !== null && <ArtistHeader theme={theme} artist={artist}/>}
       {loading && <Loader theme={theme}/>}

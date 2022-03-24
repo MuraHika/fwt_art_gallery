@@ -7,7 +7,7 @@ import Input from '../Input';
 import Close from "../../assets/Close.svg";
 import Link from '../Link';
 import { useAppDispatch, useAppSelector } from "../../hooks/useToolkit";
-import { authUser, checkEmptyField } from "../../slices/artistSlice";
+import { authUser, checkEmptyField } from "../../slices/userSlice";
 
 interface ModalAuthProps {
   setRegister: React.Dispatch<React.SetStateAction<boolean>>; 
@@ -19,7 +19,7 @@ const ModalAuth: FC<ModalAuthProps> = ({ setRegister, setAuth } : ModalAuthProps
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const dispatch = useAppDispatch();
-  const error = useAppSelector((state) => state.artists.errorValidate);
+  const error = useAppSelector((state) => state.user.errorValidate);
 
   useEffect(() => {
     window.addEventListener('keyup', onKeyPress);

@@ -1,12 +1,12 @@
 import React from 'react';
 import "./styles.scss";
-import { useNavigate } from "react-router-dom";
 import Theme from "../../assets/Theme.svg";
 import Close from "../../assets/Close.svg";
 import Button from "../Button/index";
 import ResizeScreen from "../../utils/ScreenSize";
 import { useAppDispatch, useAppSelector } from "../../hooks/useToolkit";
-import { setTheme, setLogin } from "../../slices/artistSlice";
+import { setTheme } from "../../slices/artistSlice";
+import { setLogin } from "../../slices/userSlice";
 
 interface HeaderButtonsProps {
   theme?: "dark" | "light";
@@ -19,24 +19,13 @@ interface HeaderButtonsProps {
 function HeaderButtons({ theme, classesBurger, setClassToBurger, setRegister, setAuth } : HeaderButtonsProps) {
   const screen = ResizeScreen();
   const dispatch = useAppDispatch();
-  const isLogin = useAppSelector((state) => state.artists.isLogin);
-  const navigate = useNavigate();
+  const isLogin = useAppSelector((state) => state.user.isLogin);
 
   const setNewTheme = () => {
     if (theme === "dark") {
       dispatch(setTheme("light"));
     } else {
       dispatch(setTheme("dark"));
-    }
-  };
-
-  const onNavigateTo = () => {
-    if (isLogin) {
-      dispatch(setLogin(false));
-      navigate("/");
-    } else {
-      dispatch(setLogin(true));
-      navigate("/artist");
     }
   };
 

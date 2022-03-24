@@ -3,18 +3,22 @@ import ResizeScreen from '../../utils/ScreenSize';
 import Arrow from "../../assets/Arrow.svg";
 // import NoImage from "../../assets/no_image.webp";
 import Favorite from "../../assets/Favorite.svg";
+import FavoriteActive from "../../assets/FavoriteActive.svg";
 import Delete from "../../assets/Delete.svg";
 import Edit from "../../assets/Edit.svg";
 import Close from "../../assets/Close.svg";
 
 import "./styles.scss";
-import { TypePaintings } from '../../utils/Types';
+import { TypePaintings, TypeArtists } from '../../utils/Types';
+import { setFavoritePaint } from '../../slices/artistSlice';
+import { useAppDispatch } from '../../hooks/useToolkit';
 
 interface SliderProps {
   theme: 'dark' | 'light';
   paintings: TypePaintings[];
   paint: string;
   setSlider: any;
+  artist: TypeArtists | null;
 }
 
 type TypePaintSlider = {
@@ -27,13 +31,15 @@ type TypePaintSlider = {
 const { LOCAL_HOST } = process.env;
 
 export default function Slider({ 
-  theme, paint, paintings, setSlider } : SliderProps,
+  theme, paint, paintings, setSlider, artist } : SliderProps,
 ) {
   const screen = ResizeScreen();
   const [currentPaint, setCurrentPage] = useState<TypePaintSlider>({ id: "", img: "", name: "", dateCreated: "" });
 
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const currentIndexRef = React.useRef(currentIndex);
+
+  const dispatch = useAppDispatch();
 
   
   useEffect(() => {
@@ -87,6 +93,12 @@ export default function Slider({
     setSlider(false);
   };
 
+  const setFavoritePainting = () => {
+    if (artist !== undefined) {
+      dispatch(setFavoritePaint({ artistId: artist!._id, paintId: currentPaint.id }));
+    }
+  };
+
   return (
     <div className={`container-slider container-slider--${theme}`}>
         {!screen.isMobile && 
@@ -110,7 +122,12 @@ export default function Slider({
                   </div>
               </div>
               <div className='interactive_buttons'>
-                <div className='interactive_buttons-icon'><Favorite /></div>
+                <div 
+                  className={`interactive_buttons-icon favorite-picture ${currentPaint.id === artist?.mainPainting._id ? 'favorite-picture--active' : ""}`}
+                  onClick={() => setFavoritePainting()}
+                >
+                    {currentPaint.id === artist?.mainPainting._id ? <FavoriteActive /> : <Favorite />}
+                </div>
                 <div className='interactive_buttons-icon'><Edit /></div>
                 <div className='interactive_buttons-icon'><Delete /></div>
               </div>
