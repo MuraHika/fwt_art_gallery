@@ -1,9 +1,10 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from 'axios';
-import { getCookie } from "../utils/getCookies";
+import Cookies from "universal-cookie";
 import { TypeArtists, TypeGenres, TypePaintings } from "../utils/Types";
 
 const { LOCAL_HOST } = process.env;
+const cookies = new Cookies();
 
 type SliceState = {
   arr_artists: TypeArtists[],
@@ -12,7 +13,6 @@ type SliceState = {
   theme: "light" | "dark",
   loading: boolean,
   isLogin: boolean,
-  authToken: { accessToken: string, refreshToken: string },
   status: null | string,
   error: null | string,
   errorValidate: { email: string, password: string, confirmPassword: string },
@@ -24,13 +24,9 @@ const initialState : SliceState = {
   arr_artists: [],
   arr_genres: [],
   arr_paintings: [],
-  theme: "light",
+  theme: cookies.get("theme") === "" ? "light" : cookies.get("theme"),
   loading: true,
-  isLogin: false,
-  authToken: { 
-    accessToken: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1haWxAbS5ydSIsImlhdCI6MTY0Nzk0MzMwNiwiZXhwIjoxNjQ3OTY0OTA2fQ.gHoTA9ykcYQQEsbQE58NIjHyIFQlr8UAJKNSfgC0xGk",
-    refreshToken:"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1haWxAbS5ydSIsImlhdCI6MTY0Nzk0MzMwNiwiZXhwIjoxNjUzMTI3MzA2fQ.RueJvWWJL4JICyX9WtI4ET3dKfkqLwJyOCvY2ivHlpA",
-  },
+  isLogin: cookies.get("AccessToken") !== "",
   status: null,
   error: null,
   errorValidate: { email: "error", password: "error", confirmPassword: "error" },
@@ -38,19 +34,8 @@ const initialState : SliceState = {
   artist: null,
 };
 
-declare module '@reduxjs/toolkit' {
-  type AsyncThunkConfig = {
-    state?: SliceState;
-  };
-}
-
-
 const header = () => {
-
-  const authToken = document.cookie.split('; ').reduce((r, v) => {
-    const parts = v.split('=');
-    return parts[0] === "token" ? decodeURIComponent(parts[1]) : r;
-  }, '');
+  const authToken = cookies.get("AccessToken");
   console.log("token", authToken);
   return ({
     headers: {
@@ -68,8 +53,8 @@ export const getAuthToken = createAsyncThunk(
         username: "demoUser",
         password: "111",
       });
-
-      document.cookie = `token=${response.data.accessToken}`;
+      cookies.set("AccessToken", response.data.accessToken, { sameSite: "strict" });
+      cookies.set("RefreshToken", response.data.refreshToken, { sameSite: "strict" });
       console.log(response.data.accessToken);
       return response.data.accessToken;
     } catch (error) {
@@ -78,29 +63,16 @@ export const getAuthToken = createAsyncThunk(
   },
 );
 
-export const checkJWT = createAsyncThunk(
-  "artists/checkJWT",
-  async (_, { rejectWithValue, getState  }) => {
+export const refreshJWT = createAsyncThunk(
+  "artists/refreshJWT",
+  async (_, { rejectWithValue }) => {
     try {
-      const token = getCookie("token");
-      const state = getState() as SliceState;
-      if (token === "") {
-
-        console.log("cookie", token);
-      }
-      if (token === "fdfvd") {
-        // dispatch(setUser());
-        const response = await axios.post(`${LOCAL_HOST}/auth/refresh`, {
-          refreshToken: state.user.refreshToken,
-        });
-        console.log("data", response.data);
-        return response.data;
-      }
-      
-
-      // document.cookie = `token=${response.data.accessToken}`;
-      // console.log(response.data.accessToken);
-      // return response.data.accessToken;
+      const response = await axios.post(`${LOCAL_HOST}/auth/refresh`, {
+        refreshToken: cookies.get("RefreshToken"),
+      });
+      console.log("data", response.data);
+      return response.data;
+ 
     } catch (error) {
       return rejectWithValue((error as Error).message);
     }
@@ -111,10 +83,9 @@ export const authUser = createAsyncThunk(
   "artists/authUser",
   async ( { email, password }: { email: string; password: string }, { rejectWithValue }) => {
     try {
-      // const isEmailValidate = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/.test(email);
-      // const isPasswordValidate = /(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z])[0-9!@#$%^&*a-zA-Z]{8,}/.test(password);
-      const isEmailValidate = "";
-      const isPasswordValidate = "";
+      const isEmailValidate = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/.test(email);
+      const isPasswordValidate = /(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z])[0-9!@#$%^&*a-zA-Z]{8,}/.test(password);
+
       if (email.length > 50 || !isEmailValidate) {
         console.log("email validate", isEmailValidate);
         return rejectWithValue("");
@@ -128,7 +99,13 @@ export const authUser = createAsyncThunk(
         password: password,
       });
 
-      document.cookie = `token=${response.data.accessToken}`;
+      if (response.status === 201) {
+        const { accessToken, refreshToken } = response.data;
+        console.log("dscsd", accessToken);
+        cookies.set("AccessToken", accessToken, { sameSite: "strict" });
+        cookies.set("RefreshToken", refreshToken, { sameSite: "strict" });
+      }
+
       return { accessToken: response.data.accessToken, refreshToken: response.data.refreshToken };
     } catch (error) {
       return rejectWithValue((error as Error).message);
@@ -140,10 +117,9 @@ export const registerUser = createAsyncThunk(
   "artists/registerUser",
   async ( { email, password, confirmPassword }: { email: string; password: string; confirmPassword: string }, { rejectWithValue }) => {
     try {
-      // const isEmailValidate = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/.test(email);
-      // const isPasswordValidate = /(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z])[0-9!@#$%^&*a-zA-Z]{8,}/.test(password);
-      const isEmailValidate = "";
-      const isPasswordValidate = "";
+      const isEmailValidate = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/.test(email);
+      const isPasswordValidate = /(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z])[0-9!@#$%^&*a-zA-Z]{8,}/.test(password);
+
       if (password !== confirmPassword) {
         return rejectWithValue("wrong confirmPassword");
       }
@@ -170,7 +146,13 @@ export const registerUser = createAsyncThunk(
         return rejectWithValue("wrong email");
       } 
 
-      document.cookie = `token=${response.data.accessToken}`;
+      if (response.status === 201) {
+        const { accessToken, refreshToken } = response.data;
+        console.log("dscsd", accessToken);
+        cookies.set("AccessToken", accessToken, { sameSite: "strict" });
+        cookies.set("RefreshToken", refreshToken, { sameSite: "strict" });
+      }
+
       return { accessToken: response.data.accessToken, refreshToken: response.data.refreshToken };
     } catch (error) {
       console.log("response", error);
@@ -181,12 +163,15 @@ export const registerUser = createAsyncThunk(
 
 export const getArtists = createAsyncThunk(
   "artists/getArtists",
-  async (_, { rejectWithValue }) => {
+  async (_, { rejectWithValue, dispatch }) => {
     try {
       const response = await axios.get(`${LOCAL_HOST}/artists`, header());
       console.log(response.data);
       if (response.status === 401) {
-        console.log(response.status);
+        await dispatch(refreshJWT());
+        const newResponse = await axios.get(`${LOCAL_HOST}/artists`, header());
+        console.log(newResponse.status);
+        return newResponse.data;
       }
       return response.data.data;
     } catch (error) {
@@ -210,9 +195,15 @@ export const getStaticArtists = createAsyncThunk(
 
 export const getPaintingsOfArtist = createAsyncThunk(
   "artists/getPaintingsOfArtist",
-  async ( id: string, { rejectWithValue }) => {
+  async ( id: string, { rejectWithValue, dispatch }) => {
     try {
       const response = await axios.get(`${LOCAL_HOST}/artists/${id}`, header());
+      if (response.status === 401) {
+        await dispatch(refreshJWT());
+        const newResponse = await axios.get(`${LOCAL_HOST}/artists/${id}`, header());
+        console.log(newResponse.status);
+        return newResponse.data;
+      }
       console.log(response.data.paintings);
       return response.data.paintings;
     } catch (error) {
@@ -223,9 +214,15 @@ export const getPaintingsOfArtist = createAsyncThunk(
 
 export const getGenres = createAsyncThunk(
   "artists/getGenres",
-  async (_, { rejectWithValue }) => {
+  async (_, { rejectWithValue, dispatch }) => {
     try {
       const response = await axios.get(`${LOCAL_HOST}/genres/`, header());
+      if (response.status === 401) {
+        await dispatch(refreshJWT());
+        const newResponse = await axios.get(`${LOCAL_HOST}/genres/`, header());
+        console.log(newResponse.status);
+        return newResponse.data;
+      }
       console.log(response.data);
       return response.data;
     } catch (error) {
@@ -270,6 +267,10 @@ const artistSlice = createSlice({
       state.artist = action.payload;
     },
     setLogin(state, action){
+      if (action.payload === false ) {
+        cookies.set("AccessToken", "", { sameSite: "strict" });
+        cookies.set("RefreshToken", "", { sameSite: "strict" });
+      }
       state.isLogin = action.payload;
     },
     checkEmptyField(state, action) {
@@ -321,7 +322,6 @@ const artistSlice = createSlice({
     });
     builder.addCase(getAuthToken.fulfilled, (state, action) => {
       state.status = "resolved";
-      state.authToken = action.payload;
     });
     builder.addCase(registerUser.pending, (state) => {
       state.status = "loading";
@@ -347,6 +347,17 @@ const artistSlice = createSlice({
       state.errorValidate = { email: "error", password: "error", confirmPassword: "error" };
     });
 
+    builder.addCase(refreshJWT.pending, (state) => {
+      state.status = "loading";
+      state.error = null;
+    });
+    builder.addCase(refreshJWT.fulfilled, (state, action) => {
+      state.status = "resolved";
+      console.log("action", action.payload);
+      state.user.accessToken = action.payload.accessToken;
+      state.user.refreshToken = action.payload.refreshToken;
+      state.isLogin = true;
+    });
     builder.addCase(getArtists.rejected, setError);
     builder.addCase(getStaticArtists.rejected, setError);
     builder.addCase(getGenres.rejected, setError);

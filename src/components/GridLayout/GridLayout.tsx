@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import Card from "../Card/index";
 import { TypeArtists, TypePaintings } from "../../utils/Types";
 import ResizeScreen from "../../utils/ScreenSize";
-import { useAppDispatch } from '../../hooks/useToolkit';
+import { useAppDispatch, useAppSelector } from '../../hooks/useToolkit';
 import { setArtist } from '../../slices/artistSlice';
 
 type CardArt = {
@@ -34,6 +34,7 @@ export default function GridLayout(
   const arr = identity(items.array);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+  const isLogin = useAppSelector((state) => state.artists.isLogin);
   
   useEffect(() => {
     if (items.type === 'artist') {
@@ -42,9 +43,11 @@ export default function GridLayout(
   }, []);
 
   const redirectToArtist = async (artist: TypeArtists) => {
-    await dispatch(setArtist(artist));
-    console.log(artist);
-    navigate(`artist/${artist._id}`);
+    if (isLogin) {
+      await dispatch(setArtist(artist));
+      console.log(artist);
+      navigate(`artist/${artist._id}`);
+    }
   };
 
   return (

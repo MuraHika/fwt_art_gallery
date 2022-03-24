@@ -23,6 +23,7 @@ function Main() {
         <GridLayout items={{ type: 'paint', array: artists }} theme={theme} />
       </div>
       }
+      {artists.length === 0 && <div style={{ height: "100vh" }} />}
       <Footer theme={theme} />
     </div>
   );

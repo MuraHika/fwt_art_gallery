@@ -45,7 +45,8 @@
       "object-shorthand": "off",
       "consistent-return": "off",
       "@typescript-eslint/no-unused-expressions": "off",
-      "no-underscore-dangle": "off"
+      "no-underscore-dangle": "off",
+      "no-useless-escape": "off"
     },
     "settings": {
       "import/resolver": {

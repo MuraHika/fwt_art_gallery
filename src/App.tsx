@@ -3,8 +3,7 @@ import { Helmet } from "react-helmet";
 import { batch } from 'react-redux';
 import { Routes, Route } from "react-router-dom";
 import { useAppDispatch } from "./hooks/useToolkit";
-import { getArtists, getGenres, setTheme, setLoading, getAuthToken, checkJWT } from "./slices/artistSlice";
-import { getCookie } from "./utils/getCookies";
+import { getArtists, getGenres, setLoading, getAuthToken } from "./slices/artistSlice";
 
 function App() {
   const MainPage = React.lazy(() => import("./pages/Main"));
@@ -17,17 +16,13 @@ function App() {
   useEffect(() => {
     batch(() => {
       setTimeout(async () => {
-        await getToken();
-        await dispatch(checkJWT());
+        // await getToken();  
         dispatch(getArtists());
         dispatch(getGenres());
         dispatch(setLoading(false));
       }, 1000);
     });
 
-    const theme = getCookie("theme");
-    dispatch(setTheme( theme === "light" ? "light" : "dark"));
-    console.log("cookie", theme);
   }, []);
 
   const getToken = async () => {
