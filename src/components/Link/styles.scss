@@ -1,0 +1,22 @@
+@import "../../styles.scss";
+.link {
+  font-family: $family_font;
+}
+
+.link--light {
+  color: $main-color__black;
+}
+
+.link--light:hover,
+.link--light:active {
+  color: $button-color;
+}
+
+.link--dark {
+  color: $main-color__white;
+}
+
+.link--dark:hover,
+.link--dark:active  {
+  color: $hover-color;
+}

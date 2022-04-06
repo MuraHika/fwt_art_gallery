@@ -1,7 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
 $mobile_breakpoint: 320px;
 $tablet_breakpoint: 321px 768px;
 $desktop_breakpoint: 769px 1024px;
-$family_font: 'Roboto';
+$family_font: 'Roboto', sans-serif;
 $weight_font__black: 900;
 $weight_font__regular: 400;
 $weight_font__bold: 700;
@@ -19,3 +20,22 @@ $main-color__white: #FFFFFF;
 $secondary-color: #9C9C9C;
 $button-color: #4C4C4C;
 $tags-color: #FAFAD2;
+$hover-color: #AAAAAA;
+
+@mixin _1024 {
+  @media (min-width: 769px){
+      @content;
+  }
+}
+
+@mixin _768 {
+  @media (min-width: 321px) and (max-width: 768px){
+      @content;
+  }
+}
+
+@mixin _320 {
+  @media (max-width: 320px){
+      @content;
+  }
+}

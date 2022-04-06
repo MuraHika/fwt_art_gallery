@@ -1,0 +1,103 @@
+@import "../../styles.scss";
+.container-card {
+    font-family: $family_font;
+    border-radius: 4px;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    // align-items: flex-end;
+    overflow: hidden;
+    margin: 0.3em;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.container-card__footer {
+    background: rgba(255, 255, 255, 0.75);
+    width: 100%;
+    height: 100%;
+    // bottom: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    // font-family: Roboto;
+    padding-left: 0.6rem;
+    transition: transform 0.35s;
+    transform: translate3d(0, 80%, 0);
+    @include _1024 {
+        transform: translate3d(0, 85%, 0);
+    }
+}
+
+.container-card__footer:hover {
+    @include _1024 {
+        transition: transform 0.35s;
+        transform: translate3d(0, 55%, 0);
+    }
+}
+
+.container-card__footer__row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 0.6rem;
+}
+
+.container-card__footer h1 {
+    font-size: $size_font__18;
+    font-weight: $weight_font__bold;
+    margin: 0;
+    margin-top: 0.5rem;
+    @include _320 {
+        font-size: $size_font__12;
+    }
+}
+
+.container-card__footer h2 {
+    font-size: $size_font__14;
+    font-weight: $weight_font__medium;
+    margin: 0;
+    opacity: 0;
+    transition: opacity 0.35s;
+    @include _320 {
+        font-size: $size_font__10;
+    }
+}
+
+.container-card__footer p {
+    font-size: $size_font__14;
+    font-weight: $weight_font__light;
+    margin: 0;
+    margin-left: 0.4rem;
+    opacity: 0;
+    transition: opacity 0.35s;
+    @include _320 {
+        font-size: $size_font__10;
+    }
+}
+
+.row__years {
+    color: $button-color;
+    font-weight: $weight_font__light;
+}
+
+.container-card__footer:hover h2,
+.container-card__footer:hover p {
+    @include _1024 {
+        opacity: 1;
+    }
+}
+
+.container-card__footer--hover {
+    @include _768 {
+        transition: transform 0.35s;
+        transform: translate3d(0, 55%, 0);
+    }
+}
+
+.container-card__footer--hover h2,
+.container-card__footer--hover p {
+    @include _768 {
+        opacity: 1;
+    }
+}
