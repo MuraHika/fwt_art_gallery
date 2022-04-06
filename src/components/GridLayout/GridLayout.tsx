@@ -1,26 +1,27 @@
 import React from 'react';
-import "./styles.scss";
-import Card from "../Card/index";
+import './styles.scss';
+import Card from '../Card/index';
 
 interface GridLayoutProps {
-  items: any[],
+  items: any[];
 }
 
-export default function GridLayout(
-  {
-    items,
-  } : GridLayoutProps,
-) {
+export default function GridLayout({ items }: GridLayoutProps) {
   const onClickPicture = () => {
-    console.log("done");
+    // заглушка
+    console.log('done');
   };
 
   return (
-    <div className='grid'>
-      {items.map((el) => (
-        <Card key={el.id} author_name={el.author} picture_name={el.painting} onClick={onClickPicture} />
-      ),
-      )}
+    <div className="grid">
+      {items.map(el => (
+        <Card
+          key={el.id}
+          author_name={el.author}
+          picture_name={el.painting}
+          onClick={onClickPicture}
+        />
+      ))}
     </div>
   );
 }

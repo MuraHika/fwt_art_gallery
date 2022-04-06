@@ -1,5 +1,8 @@
 import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import {
+  ComponentStory,
+  ComponentMeta,
+} from '@storybook/react';
 import Button from './Button';
 
 export default {
@@ -7,17 +10,21 @@ export default {
   component: Button,
 } as ComponentMeta<typeof Button>;
 
-const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />;
+const Template: ComponentStory<
+  typeof Button
+> = args => <Button {...args} />;
 
 export const ButtonStory = Template.bind({});
 ButtonStory.args = {
-  text: "LOG IN",
-  size: "large",
-  theme: "dark",
+  text: 'LOG IN',
+  size: 'large',
+  theme: 'dark',
   isPrimary: true,
 };
 
-export const DefaultButtonStory = Template.bind({});
+export const DefaultButtonStory = Template.bind(
+  {},
+);
 DefaultButtonStory.args = {
-  text: "LOG IN",
+  text: 'LOG IN',
 };

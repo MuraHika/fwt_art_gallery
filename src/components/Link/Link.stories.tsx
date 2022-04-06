@@ -7,17 +7,17 @@ export default {
   component: Link,
 } as ComponentMeta<typeof Link>;
 
-const Template: ComponentStory<typeof Link> = (args) => <Link {...args} />;
+const Template: ComponentStory<typeof Link> = args => <Link {...args} />;
 
 export const LinkStory = Template.bind({});
 LinkStory.args = {
-  url: "https://google.com",
-  text: "please log in",
-  theme: "light",
+  url: 'https://google.com',
+  text: 'please log in',
+  theme: 'light',
 };
 
 export const DefaultLinkStory = Template.bind({});
 DefaultLinkStory.args = {
-  url: "https://google.com",
-  text: "please log in",
+  url: 'https://google.com',
+  text: 'please log in',
 };
